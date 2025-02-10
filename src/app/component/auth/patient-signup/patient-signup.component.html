@@ -1,0 +1,44 @@
+<h1> Register as a Patient</h1>
+
+<div class="container">
+  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+    <!-- اسم المريض -->
+    <div class="input-icon">
+      <i class="fas fa-user"></i>
+      <input type="text" id="name" formControlName="name" placeholder="Full Name" required />
+    </div>
+    <div *ngIf="patientForm.get('name')?.invalid && patientForm.get('name')?.touched">
+      يرجى إدخال الاسم الكامل.
+    </div>
+
+    <!-- عمر المريض -->
+    <div class="input-icon">
+      <i class="fas fa-birthday-cake"></i>
+      <input type="number" id="age" formControlName="age" placeholder="Age" required />
+    </div>
+    <div *ngIf="patientForm.get('age')?.invalid && patientForm.get('age')?.touched">
+      يرجى إدخال عمر صحيح.
+    </div>
+
+    <!-- البريد الإلكتروني -->
+    <div class="input-icon">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="email" formControlName="email" placeholder="Email" required />
+    </div>
+    <div *ngIf="patientForm.get('email')?.invalid && patientForm.get('email')?.touched">
+      يرجى إدخال بريد إلكتروني صحيح.
+    </div>
+
+    <!-- كلمة المرور -->
+    <div class="input-icon">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" formControlName="password" placeholder="Password" required />
+    </div>
+    <div *ngIf="patientForm.get('password')?.invalid && patientForm.get('password')?.touched">
+      يجب أن تكون كلمة المرور على الأقل 6 أحرف.
+    </div>
+
+    <!-- زر الإرسال -->
+    <button type="submit" [disabled]="patientForm.invalid">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,18 @@
+<!-- عرض الإشعارات إذا كانت موجودة -->
+<div *ngIf="notifications.length > 0">
+  <ul>
+    <li *ngFor="let notification of notifications">
+      {{ notification.message }} <!-- عرض رسالة الإشعار -->
+    </li>
+  </ul>
+</div>
+
+<!-- عرض رسالة خطأ إذا كانت هناك مشكلة في تحميل الإشعارات -->
+<div *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<!-- عرض رسالة إذا لم تكن هناك إشعارات -->
+<div *ngIf="notifications.length === 0 && !errorMessage">
+  <p>No notifications available.</p>
+</div>

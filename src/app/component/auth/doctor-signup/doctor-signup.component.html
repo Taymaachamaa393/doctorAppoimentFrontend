@@ -1,0 +1,62 @@
+<h1>Register as a Doctor</h1>
+
+<div class="register-container">
+  <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <!-- اسم الطبيب -->
+    <div class="input-icon">
+      <i class="fas fa-user"></i>
+      <input type="text" id="name" formControlName="name" placeholder="Full Name" required />
+    </div>
+    <div *ngIf="doctorForm.get('name')?.invalid && doctorForm.get('name')?.touched">
+      يرجى إدخال الاسم الكامل.
+    </div>
+
+    <!-- رقم الترخيص -->
+    <div class="input-icon">
+      <i class="fas fa-id-card"></i>
+      <input type="text" id="licenseNumber" formControlName="license_number" placeholder="License Number" required />
+    </div>
+    <div *ngIf="doctorForm.get('license_number')?.invalid && doctorForm.get('license_number')?.touched">
+      يرجى إدخال رقم الترخيص.
+    </div>
+
+    <!-- البريد الإلكتروني -->
+    <div class="input-icon">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="email" formControlName="email" placeholder="Email" required />
+    </div>
+    <div *ngIf="doctorForm.get('email')?.invalid && doctorForm.get('email')?.touched">
+      يرجى إدخال بريد إلكتروني صحيح.
+    </div>
+
+    <!-- التخصص -->
+    <div class="input-icon">
+      <i class="fas fa-briefcase"></i>
+      <input type="text" id="specialization" formControlName="specialization" placeholder="Specialization" required />
+    </div>
+    <div *ngIf="doctorForm.get('specialization')?.invalid && doctorForm.get('specialization')?.touched">
+      يرجى إدخال التخصص.
+    </div>
+
+    <!-- كلمة المرور -->
+    <div class="input-icon">
+      <i class="fas fa-lock"></i>
+      <input id="password" type="password" formControlName="password" placeholder="Password" required />
+    </div>
+    <div *ngIf="doctorForm.get('password')?.invalid && doctorForm.get('password')?.touched">
+      يجب أن تكون كلمة المرور على الأقل 6 أحرف.
+    </div>
+
+    <!-- تحميل الشهادة -->
+    <div class="input-icon">
+      <i class="fas fa-file-upload"></i>
+      <input type="file" id="certificate" (change)="onFileSelected($event)" required />
+    </div>
+    <div *ngIf="doctorForm.get('certificate')?.invalid && doctorForm.get('certificate')?.touched">
+      يرجى تحميل ملف الشهادة.
+    </div>
+
+    <!-- زر الإرسال -->
+    <button type="submit" [disabled]="doctorForm.invalid">Submit</button>
+  </form>
+</div>

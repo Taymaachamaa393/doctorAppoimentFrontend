@@ -1,0 +1,12 @@
+<div *ngIf="patients.length > 0">
+    <ul>
+      <li *ngFor="let patient of patients">
+        {{ patient.name }} - {{ patient.age }} years old <!-- عرض اسم وعمر المريض -->
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="patients.length === 0">
+    <p>No patients available.</p>
+  </div>
+  

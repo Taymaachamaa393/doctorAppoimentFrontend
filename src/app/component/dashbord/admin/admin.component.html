@@ -1,0 +1,23 @@
+<div *ngIf="!selectedDoctor" class="mt-5">
+    <h2>طلبات الأطباء</h2>
+    <ul>
+      <li *ngFor="let doctor of doctors" (click)="selectDoctor(doctor)">
+        {{ doctor.name }} - {{ doctor.specialization }} - {{ doctor.status }}
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="selectedDoctor">
+    <h2>تفاصيل الطبيب</h2>
+    <img [src]="selectedDoctor.profileImageUrl" alt="Profile Image" width="100">
+    <img [src]="selectedDoctor.certificate_url" alt="Certificate" width="200">
+    <p>الاسم: {{ selectedDoctor.name }}</p>
+    <p>البريد الإلكتروني: {{ selectedDoctor.email }}</p>
+    <p>التخصص: {{ selectedDoctor.specialization }}</p>
+    <p>رقم الرخصة الطبية {{ selectedDoctor.license_number }}</p>
+    <p>الحالة: {{ selectedDoctor.status }}</p>
+    <button (click)="approveDoctor()">✅ قبول</button>
+    <button (click)="rejectDoctor()">❌ رفض</button>
+    <button (click)="selectedDoctor = null">🔙 رجوع</button>
+  </div>
+

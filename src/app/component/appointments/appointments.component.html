@@ -1,0 +1,20 @@
+<div *ngIf="appointments.length > 0">
+    <ul>
+      <li *ngFor="let appointment of appointments">
+        {{ appointment.patient }} - {{ appointment.date }}
+        <button *ngIf="appointment.id !== undefined" (click)="deleteAppointment(appointment.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="appointments.length === 0">
+    <p>No appointments available.</p>
+  </div>
+  
+  <div>
+    <h3>Add Appointment</h3>
+    <input [(ngModel)]="newAppointment.patient" placeholder="Patient Name" />
+    <input [(ngModel)]="newAppointment.date" type="datetime-local" />
+    <button (click)="addAppointment()">Add Appointment</button>
+  </div>
+  

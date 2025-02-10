@@ -1,0 +1,26 @@
+<h1>Log in</h1>
+
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- البريد الإلكتروني -->
+    <div class="input-icon">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="email" formControlName="email" placeholder="البريد الإلكتروني" required />
+    </div>
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+      يرجى إدخال بريد إلكتروني صحيح.
+    </div>
+
+    <!-- كلمة المرور -->
+    <div class="input-icon">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" formControlName="password" placeholder="كلمة المرور" required />
+    </div>
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      يرجى إدخال كلمة المرور.
+    </div>
+
+    <!-- زر الإرسال -->
+    <button type="submit" [disabled]="loginForm.invalid">تسجيل الدخول</button>
+  </form>
+</div>

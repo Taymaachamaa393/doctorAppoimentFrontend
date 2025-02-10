@@ -1,0 +1,42 @@
+<div class="dashboard mt-5">
+    <h2>Doctor's Dashboard</h2>
+  
+    <div class="dashboard-container">
+      <div class="notifications">
+        <h3>Notifications 🔔</h3>
+        <ul>
+          <li *ngFor="let notification of notifications">
+            <span class="icon">📩</span> {{ notification }}
+          </li>
+        </ul>
+      </div>
+  
+      <div class="appointments">
+        <h3>Appointments 📅</h3>
+        <ul>
+          <li *ngFor="let appointment of appointments">
+            <span class="date-time">{{ appointment.date }} - {{ appointment.time }}</span>
+            <span class="patient-name">👤 {{ appointment.patient }}</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="patients">
+        <h3>Patients 🏥</h3>
+        <ul>
+          <li *ngFor="let patient of patients">👤 {{ patient }}</li>
+        </ul>
+      </div>
+  
+    <div class="new-appointment">
+        <h3>Create New Appointment 📝</h3>
+        <div class="input-group">
+          <input type="date" [(ngModel)]="newAppointment.date" />
+          <input type="time" [(ngModel)]="newAppointment.time" />
+          <input type="text" placeholder="Patient's Name" [(ngModel)]="newAppointment.patient" />
+        </div>
+        <button (click)="addAppointment()">Add Appointment</button>
+      </div>
+    </div>
+</div>
+  
