@@ -22,13 +22,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'doctorSignup', component: DoctorSignupComponent },
   { path: 'patientSignup', component: PatientSignupComponent },
-
+  { path: 'patient', component: PatientsComponent },
   { path: 'home', component: HomeComponent },
 
   { path: 'header', component: HeaderComponent},
   { path: 'footer', component: FooterComponent },
 
- 
+
 
   // مسار عام متاح فقط للمستخدمين الذين سجلوا دخولهم
   { path: 'Patients', component: PatientsComponent,canActivate:[AuthGuard] },
@@ -41,14 +41,14 @@ const routes: Routes = [
     canActivate: [roleGuard],
     data: { role: 'admin' },
     children: [
-     
-      { path: '', redirectTo: 'admin', pathMatch: 'full' },  
+
+      { path: '', redirectTo: 'admin', pathMatch: 'full' },
       { path: 'Patients', component: PatientsComponent },
       { path: 'search-doctors', component: SearchDoctorsComponent },
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
       { path: 'appointments', component: AppointmentsComponent },
-      
+
     ]
   },
   {
@@ -63,10 +63,10 @@ const routes: Routes = [
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
       { path: 'appointments', component: AppointmentsComponent },
-        
+
     ]
   },
- 
+
 ];
 
 @NgModule({
