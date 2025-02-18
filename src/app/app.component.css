@@ -1,0 +1,11 @@
+  /* المحتوى الرئيسي */
+.main-content {
+  margin-left: 250px; /* نفس عرض الشريط الجانبي */
+  padding: 20px;
+  transition: margin-left 0.3s ease; /* تحريك الهامش بسلاسة عند طي الشريط */
+}
+
+/* حالة طي الشريط */
+.main-content.collapsed {
+  margin-left: 80px; /* عرض الشريط عند الطي */
+}

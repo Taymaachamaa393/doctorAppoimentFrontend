@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationsService } from '../../../services/notifications.service';
 import { DoctorService } from '../../../services/doctor.service';
-import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
+import { DoctorResponse } from '../../../services/doctor.service';// استيراد الواجهة
 import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms'; // تأكد من استيراد NgForm
 import { Observable } from 'rxjs';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrl: './doctor.component.css'
+  selector: 'app-appointments',
+  templateUrl: './appointments.component.html',
+  styleUrl: './appointments.component.css'
 })
-export class DoctorComponent implements OnInit{
+export class AppointmentsComponent implements OnInit{
     
   @ViewChild('appointmentForm') appointmentForm!: NgForm; 
 

@@ -3,15 +3,20 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // استيراد ReactiveFormsModule
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
         //InterCeptor
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+
 import { authInterceptor } from './interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppointmentsComponent } from './component/appointments/appointments.component';
-import { FooterComponent } from './component/share/footer/footer.component';
+import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PatientsComponent } from './component/dashbord/patients/patients.component';
@@ -22,7 +27,14 @@ import { DoctorComponent } from './component/dashbord/doctor/doctor.component';
 import { LoginComponent } from './component/auth/login/login.component';
 import { DoctorSignupComponent } from './component/auth/doctor-signup/doctor-signup.component';
 import { PatientSignupComponent } from './component/auth/patient-signup/patient-signup.component';
-import { HeaderComponent } from './component/share/header/header.component';
+import { HeaderComponent } from './component/shared/header/header.component';
+import { SidebarComponent } from './component/shared/sidebar/sidebar.component';
+import { AppointmentsDoctorComponent } from './component/page-doctors/appointments-doctor/appointments-doctor.component';
+import { PatientsDoctorComponent } from './component/page-doctors/patients-doctor/patients-doctor.component';
+import { CreateAppointmentComponent } from './component/page-doctors/create-appointment/create-appointment.component';
+import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
+import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +51,13 @@ import { HeaderComponent } from './component/share/header/header.component';
     LoginComponent,
     DoctorSignupComponent,
     PatientSignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent,
+    AppointmentsDoctorComponent,
+    PatientsDoctorComponent,
+    CreateAppointmentComponent,
+    AllAppointmentsComponent,
+    AvailableAppointmentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +65,14 @@ import { HeaderComponent } from './component/share/header/header.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NgbModule,
+    CommonModule,
+    RouterModule,
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withInterceptors([authInterceptor])) 
+    provideHttpClient(withInterceptors([authInterceptor])) ,
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent]
 })

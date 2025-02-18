@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
-import { HeaderComponent } from './component/share/header/header.component';
-import { FooterComponent } from './component/share/footer/footer.component';
+import { HeaderComponent } from './component/shared/header/header.component';
+import { FooterComponent } from './component/shared/footer/footer.component';
 import { SearchDoctorsComponent } from './component/search-doctors/search-doctors.component';
 import { ReportsComponent } from './component/reports/reports/reports.component';
 import { PatientsComponent } from './component/dashbord/patients/patients.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { AppointmentsComponent } from './component/appointments/appointments.component';
+import { AppointmentsComponent } from './component/page-doctors/appointments/appointments.component';
 import { DoctorComponent } from './component/dashbord/doctor/doctor.component';
 import { DoctorSignupComponent } from './component/auth/doctor-signup/doctor-signup.component';
 import { AdminComponent } from './component/dashbord/admin/admin.component';
@@ -15,6 +15,10 @@ import { PatientSignupComponent } from './component/auth/patient-signup/patient-
 import { LoginComponent } from './component/auth/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { roleGuard } from './guard/role.guard';
+import { AppointmentsDoctorComponent } from './component/page-doctors/appointments-doctor/appointments-doctor.component';
+import { CreateAppointmentComponent } from './component/page-doctors/create-appointment/create-appointment.component';
+import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
+import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
 
 const routes: Routes = [
 
@@ -43,8 +47,10 @@ const routes: Routes = [
     children: [
 
       { path: '', redirectTo: 'admin', pathMatch: 'full' },
+      { path: 'header', component: HeaderComponent},
       { path: 'Patients', component: PatientsComponent },
-      { path: 'search-doctors', component: SearchDoctorsComponent },
+
+      // { path: 'search-doctors', component: SearchDoctorsComponent },
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
       { path: 'appointments', component: AppointmentsComponent },
@@ -57,9 +63,14 @@ const routes: Routes = [
     canActivate: [roleGuard],
     data: { role: 'doctor' },
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },  // المسار الافتراضي
+      { path: '', redirectTo: 'doctor', pathMatch: 'full' },  // المسار الافتراضي
+      { path: 'header', component: HeaderComponent},
       { path: 'Patients', component: PatientsComponent },
-      { path: 'search-doctors', component: SearchDoctorsComponent },
+      { path: 'appointmentsDoctor', component: AppointmentsDoctorComponent},
+      { path: 'create-appointment', component: CreateAppointmentComponent },
+      { path: 'all-appointments', component: AllAppointmentsComponent },
+      { path: 'available-appointments', component: AvailableAppointmentsComponent },
+      // { path: 'search-doctors', component: SearchDoctorsComponent },
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
       { path: 'appointments', component: AppointmentsComponent },

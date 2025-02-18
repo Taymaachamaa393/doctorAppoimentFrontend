@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationsService } from '../../../services/notifications.service';
 import { DoctorService } from '../../../services/doctor.service';
-import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
+import { DoctorResponse } from '../../../services/doctor.service';// استيراد الواجهة
 import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms'; // تأكد من استيراد NgForm
 import { Observable } from 'rxjs';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrl: './doctor.component.css'
+  selector: 'app-appointments-doctor',
+  templateUrl: './appointments-doctor.component.html',
+  styleUrl: './appointments-doctor.component.css'
 })
-export class DoctorComponent implements OnInit{
+export class AppointmentsDoctorComponent implements OnInit{
     
   @ViewChild('appointmentForm') appointmentForm!: NgForm; 
 
@@ -34,7 +34,8 @@ export class DoctorComponent implements OnInit{
   constructor(
     private notificationsService: NotificationsService,
     private doctorService: DoctorService,
-    private authService: AuthService // لإدارة التوكن
+    private authService: AuthService, // لإدارة التوكن
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +53,76 @@ export class DoctorComponent implements OnInit{
     this.loadMyAppointments();
     this.loadPatients();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // التنقل إلى صفحة إنشاء المواعيد
+  navigateToCreateAppointment(): void {
+    this.router.navigate(['/create-appointment']);
+  }
+
+  // التنقل إلى صفحة عرض جميع المواعيد
+  navigateToAllAppointments(): void {
+    this.router.navigate(['/all-appointments']);
+  }
+
+  // التنقل إلى صفحة عرض المواعيد غير المحجوزة
+  navigateToAvailableAppointments(): void {
+    this.router.navigate(['/available-appointments']);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // تحميل جميع المواعيد المحجوزة وغير المحجوزة  الدكتور 
     loadMyAppointments(): void {
       this.doctorService.getMyAppointments().subscribe(

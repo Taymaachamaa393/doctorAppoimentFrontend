@@ -1,0 +1,172 @@
+<div class="cards-container">
+  <!-- كارد إنشاء المواعيد -->
+  <div class="card" (click)="navigateToCreateAppointment()">
+    <i class="fas fa-calendar-plus card-icon"></i>
+    <h3>Create Appointment</h3>
+    <p>Click here to create a new appointment.</p>
+  </div>
+
+  <!-- كارد عرض جميع المواعيد -->
+  <div class="card" (click)="navigateToAllAppointments()">
+    <i class="fas fa-list-alt card-icon"></i>
+    <h3>All Appointments</h3>
+    <p>View all scheduled appointments.</p>
+  </div>
+
+  <!-- كارد عرض المواعيد غير المحجوزة -->
+  <div class="card" (click)="navigateToAvailableAppointments()">
+    <i class="fas fa-clock card-icon"></i>
+    <h3>Available Appointments</h3>
+    <p>Check available slots for booking.</p>
+  </div>
+</div>
+
+
+<!-- <div class="dashboard-container">
+    
+    <div class="dashboard mt-5">
+        <h2>Doctor's Dashboard</h2> -->
+      
+        <!-- <div class="notifications">
+            <div class="dashboard-container">
+            <h3>Notifications 🔔</h3>
+            <ul>
+              <li *ngFor="let notification of notifications">
+                <span class="icon">📩</span> {{ notification }}
+              </li>
+            </ul>
+          </div> -->
+    
+       
+<!--     
+        <div class="appointments">
+      <h3>Appointments 📅</h3>
+      <ul>
+        <li *ngFor="let appointment of appointments">
+          <span class="date-time">
+            {{ appointment.appointment_date }} - {{ appointment.appointment_time | slice:0:5 }}
+          </span>
+          <span class="patient-name">
+            👤 {{ appointment.patient_id ? 'Patient ID: ' + appointment.patient_id : 'No Patient' }}
+          </span>
+          <button
+          class="btn btn-danger"
+          (click)="deleteAppointment(appointment.id)"
+        >
+          Delete
+        </button>
+        </li>
+      </ul>
+    </div>
+       -->
+      
+    
+          <!-- <div class="new-appointment card p-4 shadow">
+            <h3 class="text-primary text-center">Create New Appointment 📝</h3>
+            <hr />
+          
+            <form #appointmentForm="ngForm">-->
+              <!-- حقل التاريخ مع أيقونة داخل الإدخال -->
+            
+          
+              <!-- مكون Timepicker بتصميم أفضل -->
+              <!-- <div class="mb-3 text-center">
+                <ngb-timepicker 
+                  [(ngModel)]="newAppointment.time" 
+                  name="time" 
+                  [spinners]="true" 
+                  [seconds]="false"
+                ></ngb-timepicker>
+              </div> -->
+          
+              <!-- زر الإضافة -->
+              <!-- <button 
+                class="btn btn-primary btn-lg w-100"
+                (click)="addAppointment()" 
+                [disabled]="!appointmentForm.form.valid"
+              >
+                Add Appointment
+              </button>
+            </form>
+          </div>
+    
+        </div>
+    </div>
+     -->
+    
+<!--     
+    <div class="appointments">
+      <h3>Doctor's Appointments 📅</h3>
+      <ul>
+        <li *ngFor="let availableAppointment of availableAppointments">
+          <div class="appointment-details">
+            <span class="date-time">
+              📆 {{ availableAppointment.appointment_date }} - ⏰ {{ availableAppointment.appointment_time | slice:0:5 }}
+            </span>
+            <span class="patient-info">
+              👤 
+              <span *ngIf="availableAppointment.patient_id">
+                Patient ID: {{ availableAppointment.patient_id }}
+              </span>
+              <span *ngIf="!availableAppointment.patient_id && availableAppointment.is_available === 1">
+                Available
+              </span>
+              <span *ngIf="!availableAppointment.patient_id && availableAppointment.is_available === 0">
+                Not Available
+              </span>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+     -->
+    
+    
+    
+    
+    <!-- <div class="search-doctor">
+      <h3>بحث عن دكتور معين 🔍</h3>
+      <input 
+        type="text" 
+        placeholder="أدخل معرّف الدكتور"
+        [(ngModel)]="selectedDoctorId"
+      />
+      <button (click)="loadDoctorAppointments(selectedDoctorId)">
+        عرض المواعيد
+      </button>
+    </div> -->
+    
+    
+    
+    
+    
+<!--     
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Patients List 📋</h2> -->
+    
+      <!-- إذا لم يكن هناك مرضى -->
+      <!-- <div *ngIf="patients.length === 0" class="alert alert-info text-center">
+        No patients available.
+      </div> -->
+    
+      <!-- عرض المرضى في بطاقات -->
+      <!-- <div class="row">
+        <div class="col-md-4" *ngFor="let patient of patients">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ patient.name || 'N/A' }}</h5> -->
+              <!-- <p class="card-text"><strong>Email:</strong> {{ patient.email || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Phone:</strong> {{ patient.phone || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Age:</strong> {{ patient.age || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Gender:</strong> {{ patient.gender || 'N/A' }}</p> -->
+              <!-- <button class="btn btn-primary" (click)="viewPatientDetails(patient.id)">View Details</button> -->
+           
+            <!-- </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     -->
+    
+    
+    <!-- </div>  -->

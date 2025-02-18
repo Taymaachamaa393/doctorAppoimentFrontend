@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project';
+  isCollapsed: boolean = false; // تعريف الخاصية
+
+  toggleSidebar(): void {
+    this.isCollapsed = !this.isCollapsed; // تبديل الحالة
+  }
 }

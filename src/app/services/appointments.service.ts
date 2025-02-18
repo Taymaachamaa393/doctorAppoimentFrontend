@@ -11,34 +11,20 @@ export class AppointmentsService {
 
   constructor(private http: HttpClient) {}
 
-  // إعداد الهيدر مع التوكن
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token'); // جلب التوكن من التخزين المحلي
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`, // التوكن المستخدم في الهيدر
-      'Content-Type': 'application/json'
-    });
-  }
 
   // جلب مواعيد الطبيب
   getAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(`${this.apiUrl}/my-appointments`, {
-      headers: this.getHeaders() // إضافة الهيدر مع التوكن
-    });
+    return this.http.get<Appointment[]>(`${this.apiUrl}/my-appointments`);
   }
 
   // إضافة موعد جديد
   addAppointment(appointment: Appointment): Observable<Appointment> {
-    return this.http.post<Appointment>(`${this.apiUrl}/create-appointment`, appointment, {
-      headers: this.getHeaders() // إضافة الهيدر مع التوكن
-    });
+    return this.http.post<Appointment>(`${this.apiUrl}/create-appointment`, appointment);
   }
 
   // حذف موعد
   deleteAppointment(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/appointments/${id}`, {
-      headers: this.getHeaders() // إضافة الهيدر مع التوكن
-    });
+    return this.http.delete<any>(`${this.apiUrl}/appointments/${id}`);
   }
 
 }
