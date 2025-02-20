@@ -34,6 +34,8 @@ import { PatientsDoctorComponent } from './component/page-doctors/patients-docto
 import { CreateAppointmentComponent } from './component/page-doctors/create-appointment/create-appointment.component';
 import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
 import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { SrevicComponent } from './component/srevic/srevic.component';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { AvailableAppointmentsComponent } from './component/page-doctors/availab
     CreateAppointmentComponent,
     AllAppointmentsComponent,
     AvailableAppointmentsComponent,
+    AboutUsComponent,
+    SrevicComponent
   ],
   imports: [
     BrowserModule,

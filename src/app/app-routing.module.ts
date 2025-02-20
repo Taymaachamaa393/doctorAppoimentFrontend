@@ -19,6 +19,8 @@ import { AppointmentsDoctorComponent } from './component/page-doctors/appointmen
 import { CreateAppointmentComponent } from './component/page-doctors/create-appointment/create-appointment.component';
 import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
 import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { SrevicComponent } from './component/srevic/srevic.component';
 
 const routes: Routes = [
 
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'patientSignup', component: PatientSignupComponent },
   { path: 'patient', component: PatientsComponent },
   { path: 'home', component: HomeComponent },
-
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'servis', component: SrevicComponent },
   { path: 'header', component: HeaderComponent},
   { path: 'footer', component: FooterComponent },
 
