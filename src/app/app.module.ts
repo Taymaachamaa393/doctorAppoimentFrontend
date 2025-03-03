@@ -15,7 +15,6 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppointmentsComponent } from './component/appointments/appointments.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -35,13 +34,14 @@ import { CreateAppointmentComponent } from './component/page-doctors/create-appo
 import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
 import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
-import { SrevicComponent } from './component/srevic/srevic.component';
+import { HomeDoctorComponent } from './component/page-doctors/home-doctor/home-doctor.component';
+import { HomeAdminComponent } from './component/page-admin/home-admin/home-admin.component';
+import { ServicesComponent } from './component/services/services.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppointmentsComponent,
     FooterComponent,
     HomeComponent,
     NotificationsComponent,
@@ -61,7 +61,9 @@ import { SrevicComponent } from './component/srevic/srevic.component';
     AllAppointmentsComponent,
     AvailableAppointmentsComponent,
     AboutUsComponent,
-    SrevicComponent
+    HomeDoctorComponent,
+    HomeAdminComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,14 +74,19 @@ import { SrevicComponent } from './component/srevic/srevic.component';
     NgbModule,
     CommonModule,
     RouterModule,
+    
+       
+
   ],
+
   providers: [
     provideClientHydration(),
-    provideHttpClient(withInterceptors([authInterceptor])) ,
-    provideHttpClient(withFetch()),
-  ],
+    provideHttpClient(withInterceptors([authInterceptor]), withFetch()), // دمج withInterceptors و withFetch معًا
+],
+
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
 
 

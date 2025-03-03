@@ -1,4 +1,6 @@
+<!-- <app-header *ngIf="!isLoggedIn  && isPublicPage"></app-header> -->
+<app-header ></app-header>
 
-<div class="main-content" [class.collapsed]="isCollapsed">
-  <router-outlet></router-outlet>
-</div>
+
+<router-outlet></router-outlet>
+

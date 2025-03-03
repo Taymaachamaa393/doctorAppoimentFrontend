@@ -1,0 +1,100 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    padding: 2rem;
+  }
+  
+  .search-container {
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    display: flex;
+    gap: 0;
+  
+    input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 2px solid #007bff;
+      border-right: none;
+      border-radius: 2rem 0 0 2rem;
+      background: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+  
+      &:focus {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+        border-color: #0056b3;
+      }
+    }
+  
+    button {
+      border-radius: 0 2rem 2rem 0;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      border: none;
+      color: white;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+  
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      }
+    }
+  }
+  
+  .doctor-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    height: 100%;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+  
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+      border-radius: 1rem 1rem 0 0;
+    }
+  
+    .card-body {
+      padding: 1.5rem;
+      color: #2d3748;
+    }
+  
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #1a365d;
+    }
+  
+    .specialization {
+      color: #4a5568;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+  
+    .btn-details {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      width: 100%;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      }
+    }
+  }
+  

@@ -1,1 +1,90 @@
-<p>patients-doctor works!</p>
+<div class="dashboard-container">
+    
+    <div class="dashboard mt-5">
+        <h2>Doctor's Dashboard</h2>
+          
+       
+<!--     
+        <div class="appointments">
+      <h3>Appointments 📅</h3>
+      <ul>
+        <li *ngFor="let appointment of appointments">
+          <span class="date-time">
+            {{ appointment.appointment_date }} - {{ appointment.appointment_time | slice:0:5 }}
+          </span>
+          <span class="patient-name">
+            👤 {{ appointment.patient_id ? 'Patient ID: ' + appointment.patient_id : 'No Patient' }}
+          </span>
+          <button
+          class="btn btn-danger"
+          (click)="deleteAppointment(appointment.id)"
+        >
+          Delete
+        </button>
+        </li>
+      </ul>
+    </div>
+       -->
+      
+    
+          <!-- <div class="new-appointment card p-4 shadow">
+            <h3 class="text-primary text-center">Create New Appointment 📝</h3>
+            <hr />
+          
+            <form #appointmentForm="ngForm">-->
+              <!-- حقل التاريخ مع أيقونة داخل الإدخال -->
+            
+          
+              <!-- مكون Timepicker بتصميم أفضل -->
+              <!-- <div class="mb-3 text-center">
+                <ngb-timepicker 
+                  [(ngModel)]="newAppointment.time" 
+                  name="time" 
+                  [spinners]="true" 
+                  [seconds]="false"
+                ></ngb-timepicker>
+              </div> -->
+          
+              <!-- زر الإضافة -->
+              <!-- <button 
+                class="btn btn-primary btn-lg w-100"
+                (click)="addAppointment()" 
+                [disabled]="!appointmentForm.form.valid"
+              >
+                Add Appointment
+              </button>
+            </form>
+          </div>
+    
+        </div>
+    </div>
+     -->
+ 
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Patients List 📋</h2> 
+    
+      <!-- إذا لم يكن هناك مرضى -->
+      <div *ngIf="patients.length === 0" class="alert alert-info text-center">
+        No patients available.
+      </div>
+    
+      <!-- عرض المرضى في بطاقات -->
+      <div class="row">
+        <div class="col-md-4" *ngFor="let patient of patients">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ patient.name || 'N/A' }}</h5>
+              <!-- <p class="card-text"><strong>Email:</strong> {{ patient.email || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Phone:</strong> {{ patient.phone || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Age:</strong> {{ patient.age || 'N/A' }}</p> -->
+              <!-- <p class="card-text"><strong>Gender:</strong> {{ patient.gender || 'N/A' }}</p> -->
+              <!-- <button class="btn btn-primary" (click)="viewPatientDetails(patient.id)">View Details</button> -->
+           
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+    </div> 

@@ -1,1 +1,54 @@
-<p>available-appointments works!</p>
+<div class="dashboard-container">
+    
+    <div class="dashboard mt-5">
+    
+
+<!--        
+        <div class="appointments">
+      <h3>Appointments 📅</h3>
+      <ul>
+        <li *ngFor="let appointment of appointments">
+          <span class="date-time">
+            {{ appointment.appointment_date }} - {{ appointment.appointment_time | slice:0:5 }}
+          </span>
+          <span class="patient-name">
+            👤 {{ appointment.patient_id ? 'Patient ID: ' + appointment.patient_id : 'No Patient' }}
+          </span>
+          <button
+          class="btn btn-danger"
+          (click)="deleteAppointment(appointment.id)"
+        >
+          Delete
+        </button>
+        </li>
+      </ul>
+    </div>
+       -->
+      
+
+    <div class="appointments">
+      <h3>Doctor's Appointments 📅</h3>
+      <ul>
+        <li *ngFor="let availableAppointment of availableAppointments">
+          <div class="appointment-details">
+            <span class="date-time">
+              📆 {{ availableAppointment.appointment_date }} - ⏰ {{ availableAppointment.appointment_time | slice:0:5 }}
+            </span>
+            <span class="patient-info">
+              👤 
+              <span *ngIf="availableAppointment.patient_id">
+                Patient ID: {{ availableAppointment.patient_id }}
+              </span>
+              <span *ngIf="!availableAppointment.patient_id && availableAppointment.is_available === 1">
+                Available
+              </span>
+              <span *ngIf="!availableAppointment.patient_id && availableAppointment.is_available === 0">
+                Not Available
+              </span>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+   
+</div> 

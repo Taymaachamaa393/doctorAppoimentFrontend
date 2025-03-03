@@ -1,19 +1,20 @@
-<!-- <app-sidebar role="user"></app-sidebar>
-<app-header role="user"></app-header>
+<app-sidebar></app-sidebar>
+<app-header></app-header>
 <div class="main-content">
-  <router-outlet></router-outlet>
-</div> -->
-
+  <span class="username">Welcome Doctor {{ user.name }}</span>
 
 <div *ngIf="patients.length > 0">
-    <ul>
-      <li *ngFor="let patient of patients">
-        {{ patient.name }} - {{ patient.age }} years old <!-- عرض اسم وعمر المريض -->
-      </li>
-    </ul>
-  </div>
-  
-  <div *ngIf="patients.length === 0">
-    <p>No patients available.</p>
-  </div>
+  <ul>
+    <li *ngFor="let patient of patients">
+      {{ patient.name }} - {{ patient.age }} years old <!-- عرض اسم وعمر المريض -->
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="patients.length === 0">
+  <p>No patients available.</p>
+</div>
+  <router-outlet></router-outlet>
+</div>
+
   

@@ -7,7 +7,6 @@ import { SearchDoctorsComponent } from './component/search-doctors/search-doctor
 import { ReportsComponent } from './component/reports/reports/reports.component';
 import { PatientsComponent } from './component/dashbord/patients/patients.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { AppointmentsComponent } from './component/page-doctors/appointments/appointments.component';
 import { DoctorComponent } from './component/dashbord/doctor/doctor.component';
 import { DoctorSignupComponent } from './component/auth/doctor-signup/doctor-signup.component';
 import { AdminComponent } from './component/dashbord/admin/admin.component';
@@ -20,7 +19,10 @@ import { CreateAppointmentComponent } from './component/page-doctors/create-appo
 import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
 import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
-import { SrevicComponent } from './component/srevic/srevic.component';
+import { ServicesComponent } from './component/services/services.component';
+import { PatientsDoctorComponent } from './component/page-doctors/patients-doctor/patients-doctor.component';
+import { HomeDoctorComponent } from './component/page-doctors/home-doctor/home-doctor.component';
+import { HomeAdminComponent } from './component/page-admin/home-admin/home-admin.component';
 
 const routes: Routes = [
 
@@ -31,10 +33,9 @@ const routes: Routes = [
   { path: 'patient', component: PatientsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'servis', component: SrevicComponent },
+  { path: 'services', component: ServicesComponent },
   { path: 'header', component: HeaderComponent},
   { path: 'footer', component: FooterComponent },
-
 
 
   // مسار عام متاح فقط للمستخدمين الذين سجلوا دخولهم
@@ -50,13 +51,15 @@ const routes: Routes = [
     children: [
 
       { path: '', redirectTo: 'admin', pathMatch: 'full' },
+      
       { path: 'header', component: HeaderComponent},
+      { path: 'homeAdmin', component:HomeAdminComponent },
       { path: 'Patients', component: PatientsComponent },
 
       // { path: 'search-doctors', component: SearchDoctorsComponent },
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
-      { path: 'appointments', component: AppointmentsComponent },
+      // { path: 'appointments', component: AppointmentsComponent },
 
     ]
   },
@@ -68,7 +71,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'doctor', pathMatch: 'full' },  // المسار الافتراضي
       { path: 'header', component: HeaderComponent},
-      { path: 'Patients', component: PatientsComponent },
+      { path: 'home-doctor', component: HomeDoctorComponent},
+      { path: 'Patients-doctor', component: PatientsDoctorComponent },
       { path: 'appointmentsDoctor', component: AppointmentsDoctorComponent},
       { path: 'create-appointment', component: CreateAppointmentComponent },
       { path: 'all-appointments', component: AllAppointmentsComponent },
@@ -76,10 +80,12 @@ const routes: Routes = [
       // { path: 'search-doctors', component: SearchDoctorsComponent },
       { path: 'reports', component: ReportsComponent },
       { path: 'notification', component: NotificationsComponent },
-      { path: 'appointments', component: AppointmentsComponent },
+      // { path: 'appointments', component: AppointmentsComponent },
 
     ]
   },
+
+  
 
 ];
 

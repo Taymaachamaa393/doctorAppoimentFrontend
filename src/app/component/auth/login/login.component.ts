@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
   
@@ -22,8 +23,12 @@ export class LoginComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
       });
+      // التحقق من حالة تسجيل الدخول
+      this.authService.getisLoggedIn().subscribe(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/login']); // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن المستخدم مسجلًا
+     } });
     }
-  
     onSubmit(): void {
       if (this.loginForm.valid) {
         const { email, password } = this.loginForm.value;
@@ -34,7 +39,6 @@ export class LoginComponent implements OnInit {
                // حفظ التوكن
             this.authService.setToken(response.token);
             this.authService.setLoggedIn(true);
-            // this.authService.setUserRole(response.role);
 
                // استخراج الدور من المصفوفة
            const userRole = response.user.role.length > 0 ? response.user.role[0] : '';
@@ -59,5 +63,24 @@ export class LoginComponent implements OnInit {
         );
       }
     }
+
+    registerDoctor(): void {
+      // توجيه المستخدم إلى صفحة تسجيل الطبيب
+      this.router.navigate(['/doctorSignup']);
+    }
+  
+    registerPatient(): void {
+      // توجيه المستخدم إلى صفحة تسجيل المريض
+      this.router.navigate(['/patientSignup']);
+    }
 }
+  
+
+
+
+
+
+ 
+
+ 
   

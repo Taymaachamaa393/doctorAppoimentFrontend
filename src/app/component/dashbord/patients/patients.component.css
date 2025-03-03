@@ -1,0 +1,11 @@
+.main-content {
+    margin-left: var(--sidebar-width); /* Match the sidebar width */
+    padding: 60px 20px; /* Add padding to avoid overlapping with the navbar*/
+    transition: margin-left 0.3s ease; /* Smooth transition */
+    width: calc(100% - var(--sidebar-width));
+  }
+  
+  .sidebar.collapsed + .main-content {
+    margin-left: var(--collapsed-sidebar-width); /* Match the collapsed sidebar width */
+    width: calc(100% - var(--collapsed-sidebar-width)); /* Adjust width when sidebar is collapsed */
+  } 

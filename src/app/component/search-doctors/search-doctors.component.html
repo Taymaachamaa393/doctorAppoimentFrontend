@@ -1,34 +1,33 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 <div class="container mt-5">
-  <div class="input-group mb-3" style="max-width: 400px;">
-    <input type="text" [(ngModel)]="searchQuery" (input)="filterDoctors()" placeholder="ابحث عن طبيب..." class="form-control">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" (click)="getDoctors()">بحث</button>
-    </div>
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (input)="filterDoctors()"
+           placeholder="🔍 Search for a doctor..." class="form-control">
+    <button class="btn btn-primary" type="button" (click)="getDoctors()">Search</button>
   </div>
 
+  <!-- Loading Spinner -->
   <div *ngIf="loading" class="text-center my-4">
     <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">جاري التحميل...</span>
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4" *ngFor="let doctor of filteredDoctors">
-      <div class="card mb-4">
-        <img [src]="doctor.profileImageUrl || 'assets/default-doctor.png'" class="card-img-top" alt="صورة الطبيب">
-        <div class="card-body">
+  <!-- Cards Grid -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+    <div class="col" *ngFor="let doctor of filteredDoctors">
+      <div class="card doctor-card h-100">
+        <img [src]="doctor.profileImageUrl" class="card-img-top" alt="Doctor's photo">
+        <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ doctor.name }}</h5>
-          <p class="card-text">{{ doctor.specialization }}</p>
+          <p class="card-text specialization">{{ doctor.specialization }}</p>
+          <button class="btn btn-details mt-auto">View Details</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="!loading && filteredDoctors.length === 0" class="text-center text-muted">
-    لا يوجد أطباء متاحون.
+  <!-- No Results Message -->
+  <div *ngIf="!loading && filteredDoctors.length === 0" class="text-center text-muted mt-4">
+    ❌ No available doctors.
   </div>
 </div>
-
-

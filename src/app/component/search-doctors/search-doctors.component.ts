@@ -10,7 +10,7 @@ import { Doctor } from '../../models/doctor.model';
 export class SearchDoctorsComponent {
 
   searchQuery: string = '';
-  doctors: Doctor[] = [];
+  doctors: Doctor[] = []; // تخصيص قيمة افتراضية كـ Array فارغ
   filteredDoctors: Doctor[] = [];
   loading: boolean = false;
 
@@ -22,9 +22,14 @@ export class SearchDoctorsComponent {
 
   getDoctors() {
     this.loading = true;
-    this.http.get<Doctor[]>('http://localhost:8000/api/doctors').subscribe(
+    this.http.get<{ doctors: Doctor[] }>('https://api-doctor.clingroup.net/api/doctors').subscribe(
       (response) => {
-        this.doctors = response;
+        if (!response || !Array.isArray(response.doctors)) {
+          console.error('البيانات المستلمة غير صالحة:', response);
+          this.doctors = [];
+        } else {
+          this.doctors = response.doctors; // الوصول إلى الخاصية doctors
+        }
         this.filterDoctors();
         this.loading = false;
       },
@@ -36,9 +41,15 @@ export class SearchDoctorsComponent {
   }
 
   filterDoctors() {
+    if (!Array.isArray(this.doctors)) {
+      console.error('this.doctors ليست Array:', this.doctors);
+      this.filteredDoctors = [];
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase();
     this.filteredDoctors = this.doctors.filter(doctor =>
-      doctor.name.includes(this.searchQuery) || doctor.specialization.includes(this.searchQuery)
+      doctor.name.toLowerCase().includes(query) || doctor.specialization.toLowerCase().includes(query)
     );
   }
 }
-

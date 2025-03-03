@@ -1,26 +1,35 @@
-<h1>Log in</h1>
+<div class="background-layer"></div>
+
 
 <div class="container">
+  <h1>Log In</h1>
+
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <!-- البريد الإلكتروني -->
     <div class="input-icon">
       <i class="fas fa-envelope"></i>
-      <input type="email" id="email" formControlName="email" placeholder="البريد الإلكتروني" required />
+      <input type="email" id="email" formControlName="email" placeholder="Email" required />
     </div>
     <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-      يرجى إدخال بريد إلكتروني صحيح.
+      Please enter your email
     </div>
-
     <!-- كلمة المرور -->
     <div class="input-icon">
       <i class="fas fa-lock"></i>
-      <input type="password" id="password" formControlName="password" placeholder="كلمة المرور" required />
+      <input type="password" id="password" formControlName="password" placeholder="password" required />
     </div>
     <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-      يرجى إدخال كلمة المرور.
+      Please enter your password.
     </div>
-
     <!-- زر الإرسال -->
-    <button type="submit" [disabled]="loginForm.invalid">تسجيل الدخول</button>
+    <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+
+    <div class="buttons-container">
+      <!-- زر التسجيل كطبيب -->
+      <button class="register-doctor" (click)="registerDoctor()">Register as a doctor</button>
+      <!-- زر التسجيل كمريض -->
+      <button class="register-patient" (click)="registerPatient()">Register as a patient</button>
+    </div>
   </form>
 </div>
+

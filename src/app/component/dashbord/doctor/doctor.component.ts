@@ -6,6 +6,8 @@ import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms'; // تأكد من استيراد NgForm
 import { Observable } from 'rxjs';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { LayoutService } from '../../../services/layout.service'; // استيراد الخدمة
+
 
 
 @Component({
@@ -17,6 +19,7 @@ export class DoctorComponent implements OnInit{
     
   @ViewChild('appointmentForm') appointmentForm!: NgForm; 
 
+  user: { name: string } = { name: ''}; // بيانات المستخدم
   notifications: string[] = [];
   appointments: any[] = []; // لتخزين المواعيد
   availableAppointments: any[] = []; // لتخزين المواعيد
@@ -30,15 +33,22 @@ export class DoctorComponent implements OnInit{
   };
   errorMessage: string = ''; // لتخزين رسالة الخطأ
   successMessage: string = ''; // لتخزين رسالة النجاح
+  isCollapsed: boolean = false; // حالة الطي/التوسيع
+
 
   constructor(
     private notificationsService: NotificationsService,
     private doctorService: DoctorService,
-    private authService: AuthService // لإدارة التوكن
+    private authService: AuthService ,// لإدارة التوكن
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
    
+      // جلب بيانات المستخدم
+      this.authService.getUser().subscribe(userData => {
+        this.user = userData;
+      });
     // الحصول على معرف الدكتور الحالي
     const currentUser = this.authService.getCurrentUser();
     console.log('Current User:', currentUser);
@@ -51,7 +61,14 @@ export class DoctorComponent implements OnInit{
   }
     this.loadMyAppointments();
     this.loadPatients();
+
+   // مراقبة حالة الطي/التوسيع
+   this.layoutService.isCollapsed$.subscribe(collapsed => {
+     this.isCollapsed = collapsed;
+   });
   }
+
+
     // تحميل جميع المواعيد المحجوزة وغير المحجوزة  الدكتور 
     loadMyAppointments(): void {
       this.doctorService.getMyAppointments().subscribe(
@@ -148,10 +165,14 @@ export class DoctorComponent implements OnInit{
       }
     );
   }
+
+
+  
 }
     
     
-  
+
+
 
 
 

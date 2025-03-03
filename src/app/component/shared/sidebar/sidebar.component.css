@@ -1,77 +1,6 @@
-/* جعل الشريط الجانبي ثابتًا على الجهة اليسارية */
-.sidebar {
-    position: fixed; /* يجعل الشريط ثابتًا */
-    top: 0;
-    left: 0;
-    width: 250px; /* عرض الشريط */
-    height: 100vh; /* ارتفاع الشريط يغطي كامل الصفحة */
-    background-color: #112a42; /* لون الخلفية */
-    color: white; /* لون النص */
-    padding: 20px; /* تباعد داخلي */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* ظل بسيط لإبراز الشريط */
-    z-index: 1000; /* ضمان أن الشريط يظهر فوق المحتوى الآخر */
-    transition: width 0.3s ease; /* تحريك عرض الشريط بسلاسة */
-  }
-  
-  /* تصميم الروابط داخل الشريط */
-  .sidebar .nav-links {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-  }
-  
-  .sidebar .nav-links li {
-    margin-bottom: 15px;
-  }
-  
-  .sidebar .nav-links a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-  }
-  
-  .sidebar .nav-links a i {
-    margin-right: 10px;
-  }
-  
-  .sidebar .nav-links a:hover {
-    color: #007bff; /* تغيير اللون عند التحويم */
-  }
-  
-  /* حالة طي الشريط */
-  .sidebar.collapsed {
-    width: 80px; /* عرض الشريط عند الطي */
-  }
-  
-  .sidebar.collapsed .nav-links span {
-    display: none; /* إخفاء النصوص عند الطي */
-  }
-  
-  .sidebar.collapsed .logo {
-    display: none; /* إخفاء الشعار عند الطي */
-  }
-  
-  /* زر الطي/التوسيع */
-  .toggle-btn {
-    position: absolute;
-    top: 10px;
-    right: -20px; /* وضع الزر خارج الشريط قليلاً */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease; /* تحريك الزر بسلاسة */
-  }
-  
-  .sidebar.collapsed .toggle-btn {
-    transform: rotate(180deg); /* تدوير الزر عند الطي */
-  }
 
-  /* تصميم الروابط داخل الشريط */
+
+/* Navbar links */
 .sidebar .nav-links {
   list-style: none;
   padding: 0;
@@ -88,39 +17,15 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  padding: 10px; /* تباعد داخلي للرابط */
-  border-radius: 5px; /* زوايا مستديرة */
-  transition: background-color 0.3s ease, color 0.3s ease; /* تحريك التغييرات بسلاسة */
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.sidebar .nav-links a i {
-  margin-right: 10px;
-}
-
-/* تغيير لون الخلفية عند التحويم */
 .sidebar .nav-links a:hover {
-  background-color: #007bff; /* لون الخلفية الجديد */
-  color: white; /* لون النص الجديد */
+  background-color: #007bff;
+  color: white;
 }
 
-/* حالة طي الشريط */
-.sidebar.collapsed .nav-links span {
-  display: none; /* إخفاء النصوص عند الطي */
-}
 
-.sidebar.collapsed .nav-links a:hover {
-  background-color: #007bff; /* لون الخلفية عند التحويم في حالة الطي */
-  border-radius: 50%; /* جعل الأيقونة مستديرة عند الطي */
-  width: 40px; /* عرض الأيقونة */
-  height: 40px; /* ارتفاع الأيقونة */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-/* تصميم الرابط النشط */
-.sidebar .nav-links a.router-link-active {
-    background-color: #007bff; /* لون الخلفية للرابط النشط */
-    color: white; /* لون النص للرابط النشط */
-    border-radius: 5px; /* زوايا مستديرة */
-  }

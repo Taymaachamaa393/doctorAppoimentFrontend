@@ -1,20 +1,85 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<div class="sidebar" [class.collapsed]="isCollapsed">
-    <!-- زر الطي/التوسيع -->
-    <button class="toggle-btn" (click)="toggleSidebar()">
+  
+<ng-container *ngIf="isActive">
+  <div class="sidebar {{ userRole }}-sidebar" [class.active]="isActive" [class.collapsed]="isCollapsed" *ngIf="userRole">
+    <!-- زر التبديل -->
+    <button class="toggle-btn" (click)="toggleCollapse()">
       <i class="fas" [class.fa-chevron-left]="!isCollapsed" [class.fa-chevron-right]="isCollapsed"></i>
     </button>
-  
+
     <!-- الشعار -->
     <h3 class="logo">Dashboard</h3>
-  
-    <!-- الروابط -->
-    <ul class="nav-links">
-      <li><a [routerLink]="['/doctor/appointments']"><i class="fas fa-home"></i> <span *ngIf="!isCollapsed">Home</span></a></li>
-      <li><a [routerLink]="['/doctor/appointmentsDoctor']"><i class="fas fa-calendar-alt"></i> <span *ngIf="!isCollapsed">Appointments</span></a></li>
-      <li><a [routerLink]="['/doctor/appointments']"><i class="fas fa-users"></i> <span *ngIf="!isCollapsed">Patients</span></a></li>
-      <li><a [routerLink]="['/doctor/appointments']"><i class="fas fa-cog"></i> <span *ngIf="!isCollapsed">Settings</span></a></li>
-      <li><a [routerLink]="['/doctor/appointments']" (click)="logout()"><i class="fas fa-sign-out-alt"></i> <span *ngIf="!isCollapsed">Logout</span></a></li>
-    </ul>
+
+    <!-- القوائم -->
+    <div class="menu-section">
+      <ul class="nav-links">
+        <ng-container *ngIf="userRole === 'doctor'">
+          <li><a [routerLink]="['/home']" ><i class="fas fa-home"></i> <span *ngIf="!isCollapsed">Home</span></a></li>
+          <li><a [routerLink]="['/doctor/appointmentsDoctor']"><i class="fas fa-calendar-alt"></i> <span *ngIf="!isCollapsed">Appointments</span></a></li>
+          <li><a [routerLink]="['/doctor/Patients-doctor']"><i class="fas fa-users"></i> <span *ngIf="!isCollapsed">Patients</span></a></li>
+          <li><a [routerLink]="['/doctor/settings']"><i class="fas fa-cog"></i> <span *ngIf="!isCollapsed">Settings</span></a></li>
+        </ng-container>
+
+        <ng-container *ngIf="userRole === 'admin'">
+          <li><a [routerLink]="['/admin/dashboard']"><i class="fas fa-tachometer-alt"></i> <span *ngIf="!isCollapsed">Dashboard</span></a></li>
+          <li><a [routerLink]="['/home']"><i class="fas fa-home"></i> <span *ngIf="!isCollapsed">Home</span></a></li>
+          <li><a [routerLink]="['/admin/homeAdmin']"><i class="fas fa-hourglass-half"></i> <span *ngIf="!isCollapsed">Pending Requests</span></a></li>
+
+          <li><a [routerLink]="['/admin/user']"><i class="fas fa-users"></i> <span *ngIf="!isCollapsed">User</span></a></li>
+          <li><a [routerLink]="['/admin/reports']"><i class="fas fa-chart-bar"></i> <span *ngIf="!isCollapsed">Reports</span></a></li>
+          <li><a [routerLink]="['/admin/settings']"><i class="fas fa-cog"></i> <span *ngIf="!isCollapsed">Settings</span></a></li>
+        </ng-container>
+
+        <ng-container *ngIf="userRole === 'patient'">
+          <li><a [routerLink]="['/patient/appointments']"><i class="fas fa-calendar-check"></i> <span *ngIf="!isCollapsed">My Appointments</span></a></li>
+          <li><a [routerLink]="['/patient/profile']"><i class="fas fa-user"></i> <span *ngIf="!isCollapsed">Profile</span></a></li>
+          <li><a [routerLink]="['/patient/doctors']"><i class="fas fa-stethoscope"></i> <span *ngIf="!isCollapsed">Doctors</span></a></li>
+          <li><a [routerLink]="['/patient/settings']"><i class="fas fa-cog"></i> <span *ngIf="!isCollapsed">Settings</span></a></li>
+        </ng-container>
+
+        <!-- تسجيل الخروج -->
+        <li><a [routerLink]="['/logout']" (click)="logout()"><i class="fas fa-sign-out-alt"></i> <span *ngIf="!isCollapsed">Logout</span></a></li>
+      </ul>
+    </div>
+
+    <!-- معلومات المستخدم -->
+    <div class="user-info-section">
+      <div class="user-info" *ngIf="user">
+        <div class="user-details" *ngIf="!isCollapsed">
+          <span class="username">{{ user.name }}</span>
+          <span class="role-label">{{ userRole | titlecase }}</span>
+        </div>
+      </div>
+    </div>
   </div>
+</ng-container>
+
+<!-- Mobile Dropdown Menu -->
+<!-- <div class="mobile-menu" [class.active]="isMobileMenuOpen && !isActive">
+  <ul class="mobile-nav-links">
+    <ng-container *ngIf="userRole === 'doctor'">
+      <li><a [routerLink]="['/doctor/home-doctor']"><i class="fas fa-home"></i> Home</a></li>
+      <li><a [routerLink]="['/doctor/appointmentsDoctor']"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
+      <li><a [routerLink]="['/doctor/Patients-doctor']"><i class="fas fa-user-injured"></i> Patients</a></li>
+      <li><a [routerLink]="['/doctor/settings']"><i class="fas fa-cog"></i> Settings</a></li>
+    </ng-container>
+
+    <ng-container *ngIf="userRole === 'admin'">
+      <li><a [routerLink]="['/admin/dashboard']"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a [routerLink]="['/admin/home-admin']"><i class="fas fa-home"></i> Home</a></li>
+      <li><a [routerLink]="['/admin/reports']"><i class="fas fa-chart-bar"></i> Reports</a></li>
+      <li><a [routerLink]="['/admin/settings']"><i class="fas fa-cog"></i> Settings</a></li>
+    </ng-container>
+
+    <ng-container *ngIf="userRole === 'patient'">
+      <li><a [routerLink]="['/patient/appointments']"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+      <li><a [routerLink]="['/patient/profile']"><i class="fas fa-user"></i> Profile</a></li>
+      <li><a [routerLink]="['/patient/doctors']"><i class="fas fa-stethoscope"></i> Doctors</a></li>
+      <li><a [routerLink]="['/patient/settings']"><i class="fas fa-cog"></i> Settings</a></li>
+    </ng-container> -->
+
+    <!-- تسجيل الخروج -->
+    <!-- <li><a [routerLink]="['/logout']" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+  </ul>
+</div> -->

@@ -1,54 +1,115 @@
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-  }
 
-  h1 {
-    padding-top: 50px;
-    text-align: center;
-    color: #0f4c8a; /* لون أزرق غامق */
-    margin-bottom: 25px;
-    font-size: 28px;
-    font-weight: 600;
-  }
-  
-  .input-icon {
-    position: relative;
-    margin-bottom: 15px;
-  }
-  
-  .input-icon i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-  }
-  
-  .input-icon input {
+.background-layer{
+
+    position: fixed; /* تثبيت الطبقة */
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px 10px 10px 40px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+    height: 100%;
+  background-image: url('../../../../../public/images/image\ \(19\).png');
+  background-color: #97cadb2c; /* لون أزرق فاتح (يمكنك تغييره إلى أي لون تريده) */
+  background-size: cover; /* لجعل الصورة تغطي الصفحة بالكامل */
+  background-repeat: no-repeat; /* منع تكرار الصورة */
+  filter: blur(8px); /* تطبيق التغبيش */
+
+  z-index: -1; /* وضع الطبقة خلف المحتوى */
+}
+
+.container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid #cccccc00;
+  border-radius: 10px;
+  background-color: #c3cdcf36;
+  display: flex;
+  flex-direction: column;  
+}
+
+h1 {
+  text-align: center;
+  color: #173b61; /* لون أزرق غامق */
+  margin-bottom: 25px;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.input-icon {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 10px 0; /* تغيير الهامش ليكون عموديًا فقط */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background-color: #003a77;
+  transform: scale(1.0);
+}
+
+button.register-doctor {
+  background-color: #0f6322da;
+  color: white;
+  width: 48%; /* جعل الزر يغطي نصف العرض تقريبًا */
+}
+
+button.register-doctor:hover {
+  background-color: #0e551dd8;
+  transform: scale(1.05);
+}
+
+button.register-patient {
+  background-color: #830512;
+  color: white;
+  width: 48%; /* جعل الزر يغطي نصف العرض تقريبًا */
+}
+
+button.register-patient:hover {
+  background-color: #7c1620;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* إضافة تنسيق جديد للـ div الذي يحتوي على الزرين */
+.buttons-container {
+  display: flex;
+  flex-direction: row; /* وضع الزرين بجانب بعضهما */
+  justify-content: space-between; /* توزيع الزرين بالتساوي مع مسافة بينهما */
+  margin-top: 20px; /* مسافة بين الفورم والزرين */
+}

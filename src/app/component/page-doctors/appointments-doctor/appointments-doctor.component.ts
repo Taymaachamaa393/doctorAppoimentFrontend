@@ -44,44 +44,34 @@ export class AppointmentsDoctorComponent implements OnInit{
     const currentUser = this.authService.getCurrentUser();
     console.log('Current User:', currentUser);
 
-  if (currentUser && currentUser.id) {
-    this.doctorId = currentUser.id;
-    this.loadAppointments(this.doctorId);
-  } else {
-    console.error('User data is not available.');
+  // if (currentUser && currentUser.id) {
+  //   this.doctorId = currentUser.id;
+  //   this.loadAppointments(this.doctorId);
+  // } else {
+  //   console.error('User data is not available.');
+  // }
+  //   this.loadMyAppointments();
+  //   this.loadPatients();
+  // }
   }
-    this.loadMyAppointments();
-    this.loadPatients();
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // التنقل إلى صفحة إنشاء المواعيد
   navigateToCreateAppointment(): void {
-    this.router.navigate(['/create-appointment']);
+    this.router.navigate(['/doctor/create-appointment']);
   }
 
   // التنقل إلى صفحة عرض جميع المواعيد
   navigateToAllAppointments(): void {
-    this.router.navigate(['/all-appointments']);
+    this.router.navigate(['/doctor/all-appointments']);
   }
 
   // التنقل إلى صفحة عرض المواعيد غير المحجوزة
   navigateToAvailableAppointments(): void {
-    this.router.navigate(['/available-appointments']);
+    this.router.navigate(['/doctor/available-appointments']);
+  }
+
+
   }
 
 
@@ -121,105 +111,103 @@ export class AppointmentsDoctorComponent implements OnInit{
 
 
 
+  //   // تحميل جميع المواعيد المحجوزة وغير المحجوزة  الدكتور 
+  //   loadMyAppointments(): void {
+  //     this.doctorService.getMyAppointments().subscribe(
+  //       (data) => {
+  //         this.appointments = data; // تخزين المواعيد في المتغير
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching appointments:', error);
+  //       }
+  //     );
+  //   }
 
+  //   // جلب المواعيد المحجوزة للدكتور
+  //   loadAppointments(doctorId: number): void {
+  //     this.doctorService.getDoctorAppointments(doctorId).subscribe(
+  //       (data) => {
+  //         this.availableAppointments = data; // تخزين المواعيد في المتغير
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching appointments:', error);
+  //       }
+  //     );
+  //   }
+    
+  //   addAppointment(): void {
+  //     if (this.appointmentForm?.valid && this.newAppointment.date && this.newAppointment.time) {
+  //       // تحويل التاريخ إلى تنسيق YYYY-MM-DD
+  //       const formattedDate = `${this.newAppointment.date.year}-${this.pad(this.newAppointment.date.month)}-${this.pad(this.newAppointment.date.day)}`;
+    
+  //       // تحويل الوقت إلى تنسيق HH:mm
+  //       const formattedTime = `${this.pad(this.newAppointment.time.hour)}:${this.pad(this.newAppointment.time.minute)}`;
+    
+  //       // إعداد البيانات المرسلة
+  //       const appointmentData = {
+  //         appointment_date: formattedDate, // الاسم الصحيح
+  //         appointment_time: formattedTime  // الاسم الصحيح
+  //       };
+    
+  //       console.log('Data being sent:', appointmentData); // تحقق من البيانات هنا
+    
+  //       this.doctorService.createAppointment(appointmentData).subscribe({
+  //         next: (data) => {
+  //           console.log('API Response:', data);
+  //           this.appointments.push(data);
+  //           this.appointmentForm.resetForm();
+  //           alert('تم إنشاء الموعد بنجاح!');
+  //         },
+  //         error: (err) => {
+  //           console.error('Error adding appointment:', err);
+  //           if (err.error?.errors) {
+  //             alert(`الأخطاء: ${JSON.stringify(err.error.errors)}`);
+  //           } else {
+  //             alert('فشل في إنشاء الموعد: ' + err.error?.message);
+  //           }
+  //         }
+  //       });
+  //     } else {
+  //       alert('الرجاء ملء جميع الحقول المطلوبة.');
+  //     }
+  //   }
+    
+  //     // دالة مساعدة لإضافة صفر أمام الأرقام المفردة (1 → 01)
+  //     private pad(num: number): string {
+  //       return num < 10 ? `0${num}` : num.toString();
+  //     }
 
-    // تحميل جميع المواعيد المحجوزة وغير المحجوزة  الدكتور 
-    loadMyAppointments(): void {
-      this.doctorService.getMyAppointments().subscribe(
-        (data) => {
-          this.appointments = data; // تخزين المواعيد في المتغير
-        },
-        (error) => {
-          console.error('Error fetching appointments:', error);
-        }
-      );
-    }
+  //     // جلب بيانات المرضى
+  //     loadPatients(): void {
+  //       this.doctorService.getDoctorPatients(this.doctorId).subscribe(
+  //         (response: DoctorResponse) => {
+  //           console.log('Server Response:', response); // طباعة الاستجابة للتحقق
+  //           this.doctorName = response.doctor; // تخزين اسم الطبيب
+  //           this.patients = Array.isArray(response.patients) ? response.patients : [];
+  //         },
+  //         (error) => {
+  //           console.error('Error fetching patients:', error);
+  //           this.patients = [];
+  //         }
+  //       );
+  //     }
 
-    // جلب المواعيد المحجوزة للدكتور
-    loadAppointments(doctorId: number): void {
-      this.doctorService.getDoctorAppointments(doctorId).subscribe(
-        (data) => {
-          this.availableAppointments = data; // تخزين المواعيد في المتغير
-        },
-        (error) => {
-          console.error('Error fetching appointments:', error);
-        }
-      );
-    }
-    
-    addAppointment(): void {
-      if (this.appointmentForm?.valid && this.newAppointment.date && this.newAppointment.time) {
-        // تحويل التاريخ إلى تنسيق YYYY-MM-DD
-        const formattedDate = `${this.newAppointment.date.year}-${this.pad(this.newAppointment.date.month)}-${this.pad(this.newAppointment.date.day)}`;
-    
-        // تحويل الوقت إلى تنسيق HH:mm
-        const formattedTime = `${this.pad(this.newAppointment.time.hour)}:${this.pad(this.newAppointment.time.minute)}`;
-    
-        // إعداد البيانات المرسلة
-        const appointmentData = {
-          appointment_date: formattedDate, // الاسم الصحيح
-          appointment_time: formattedTime  // الاسم الصحيح
-        };
-    
-        console.log('Data being sent:', appointmentData); // تحقق من البيانات هنا
-    
-        this.doctorService.createAppointment(appointmentData).subscribe({
-          next: (data) => {
-            console.log('API Response:', data);
-            this.appointments.push(data);
-            this.appointmentForm.resetForm();
-            alert('تم إنشاء الموعد بنجاح!');
-          },
-          error: (err) => {
-            console.error('Error adding appointment:', err);
-            if (err.error?.errors) {
-              alert(`الأخطاء: ${JSON.stringify(err.error.errors)}`);
-            } else {
-              alert('فشل في إنشاء الموعد: ' + err.error?.message);
-            }
-          }
-        });
-      } else {
-        alert('الرجاء ملء جميع الحقول المطلوبة.');
-      }
-    }
-    
-      // دالة مساعدة لإضافة صفر أمام الأرقام المفردة (1 → 01)
-      private pad(num: number): string {
-        return num < 10 ? `0${num}` : num.toString();
-      }
-
-      // جلب بيانات المرضى
-      loadPatients(): void {
-        this.doctorService.getDoctorPatients(this.doctorId).subscribe(
-          (response: DoctorResponse) => {
-            console.log('Server Response:', response); // طباعة الاستجابة للتحقق
-            this.doctorName = response.doctor; // تخزين اسم الطبيب
-            this.patients = Array.isArray(response.patients) ? response.patients : [];
-          },
-          (error) => {
-            console.error('Error fetching patients:', error);
-            this.patients = [];
-          }
-        );
-      }
-
-  deleteAppointment(appointmentId: number): void {
-    this.doctorService.deleteAppointment(appointmentId).subscribe(
-      (response) => {
-        console.log('Appointment deleted successfully:', response);
-        this.successMessage = 'Appointment deleted successfully.';
-        this.errorMessage = '';
-        this.loadMyAppointments();
-      },
-      (error) => {
-        console.error('Error deleting appointment:', error);
-        this.errorMessage = error?.error?.error || 'An error occurred while deleting the appointment.';
-        this.successMessage = '';
-      }
-    );
-  }
-}
+  // deleteAppointment(appointmentId: number): void {
+  //   this.doctorService.deleteAppointment(appointmentId).subscribe(
+  //     (response) => {
+  //       console.log('Appointment deleted successfully:', response);
+  //       this.successMessage = 'Appointment deleted successfully.';
+  //       this.errorMessage = '';
+  //       this.loadMyAppointments();
+  //     },
+  //     (error) => {
+  //       console.error('Error deleting appointment:', error);
+  //       this.errorMessage = error?.error?.error || 'An error occurred while deleting the appointment.';
+  //       this.successMessage = '';
+  //     }
+  //   );
+  // }
+// }
     
     
   
