@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Patient Appointments</h2>
+  
+    <!-- شاشة التحميل -->
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <!-- عرض المواعيد كبطاقات -->
+    <div class="row" *ngIf="!loading">
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let appointment of appointments">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-calendar-alt me-2"></i>Appointment #{{ appointment.id }}
+            </h5>
+            <p class="card-text">
+              <strong><i class="fas fa-user-md me-2"></i>Doctor ID:</strong> {{ getDoctorName(appointment.doctor_id) }}<br />
+              <strong><i class="fas fa-user me-2"></i>Patient ID:</strong> {{ appointment.patient_id }}<br />
+              <strong><i class="fas fa-calendar-day me-2"></i>Date:</strong> {{ appointment.appointment_date }}<br />
+              <strong><i class="fas fa-clock me-2"></i>Time:</strong> {{ formatAppointmentTime(appointment.appointment_time) }}<br />
+              <strong><i class="fas fa-check-circle me-2"></i>Status:</strong>
+              <span [class]="appointment.is_available ? 'text-success' : 'text-danger'">
+                <i class="fas" [class.fa-check]="appointment.is_available" [class.fa-times]="!appointment.is_available"></i>
+                {{ appointment.is_available ? 'Available' : 'Not Available' }}
+              </span>
+            </p>
+          </div>
+          <div class="card-footer text-muted">
+            <small><i class="fas fa-info-circle me-2"></i>Updated on {{ appointment.updated_at | date }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

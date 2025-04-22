@@ -16,10 +16,9 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from './component/page-shared/home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PatientsComponent } from './component/dashbord/patients/patients.component';
-import { ReportsComponent } from './component/reports/reports/reports.component';
 import { SearchDoctorsComponent } from './component/search-doctors/search-doctors.component';
 import { AdminComponent } from './component/dashbord/admin/admin.component';
 import { DoctorComponent } from './component/dashbord/doctor/doctor.component';
@@ -33,10 +32,16 @@ import { PatientsDoctorComponent } from './component/page-doctors/patients-docto
 import { CreateAppointmentComponent } from './component/page-doctors/create-appointment/create-appointment.component';
 import { AllAppointmentsComponent } from './component/page-doctors/all-appointments/all-appointments.component';
 import { AvailableAppointmentsComponent } from './component/page-doctors/available-appointments/available-appointments.component';
-import { AboutUsComponent } from './component/about-us/about-us.component';
+import { AboutUsComponent } from './component/page-shared/about-us/about-us.component';
 import { HomeDoctorComponent } from './component/page-doctors/home-doctor/home-doctor.component';
 import { HomeAdminComponent } from './component/page-admin/home-admin/home-admin.component';
-import { ServicesComponent } from './component/services/services.component';
+import { ServicesComponent } from './component/page-shared/services/services.component';
+import { AppointmentsPatientsComponent } from './component/page-patients/appointments-patients/appointments-patients.component';
+import { HomePatientComponent } from './component/page-patients/home-patient/home-patient.component';
+import { ViewAllDoctorsComponent } from './component/page-shared/view-all-doctors/view-all-doctors.component';
+import { DoctorDetailsComponent } from './component/page-shared/doctor-details/doctor-details.component';
+import { BookAppointmentPatientsComponent } from './component/page-patients/book-appointment-patients/book-appointment-patients.component';
+import { ControllerAdminComponent } from './component/page-admin/controller-admin/controller-admin.component';
 
 
 @NgModule({
@@ -46,7 +51,6 @@ import { ServicesComponent } from './component/services/services.component';
     HomeComponent,
     NotificationsComponent,
     PatientsComponent,
-    ReportsComponent,
     SearchDoctorsComponent,
     AdminComponent,
     DoctorComponent,
@@ -63,7 +67,13 @@ import { ServicesComponent } from './component/services/services.component';
     AboutUsComponent,
     HomeDoctorComponent,
     HomeAdminComponent,
-    ServicesComponent
+    ServicesComponent,
+    AppointmentsPatientsComponent,
+    HomePatientComponent,
+    ViewAllDoctorsComponent,
+    DoctorDetailsComponent,
+    BookAppointmentPatientsComponent,
+    ControllerAdminComponent
   ],
   imports: [
     BrowserModule,

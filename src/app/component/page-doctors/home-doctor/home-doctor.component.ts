@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { NotificationsService } from '../../../services/notifications.service';
 import { DoctorService } from '../../../services/doctor.service';
-import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
+// import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
 import { AuthService } from '../../../services/auth.service';
 
 

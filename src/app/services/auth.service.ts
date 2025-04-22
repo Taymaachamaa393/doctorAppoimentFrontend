@@ -5,6 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { Doctor } from '../models/doctor.model'; 
 import { authDoctor } from '../models/authDoctor.model'; 
+import { authPatient } from '../models/authPatient.model';
 import { map, catchError } from 'rxjs/operators';
 
 
@@ -80,20 +81,24 @@ registerDoctor(authdoctor: authDoctor): Observable<any> {
 
     return this.http.post<any>(`${this.apiUrl}/signup-doctor`, formData);
 }
-   // الحصول على توكن صالح
-  // الآن يتم التحقق أولًا من صلاحية التوكن، وإذا كان منتهي الصلاحية يتم استدعاء refreshToken().
-  getValidToken(): Observable<string> {
-    const token = this.getToken();
-    if (token && !this.isTokenExpired(token)) {
-      return of(token); //  التوكن صالح، استخدمه
-    } else {
-      console.warn("Token expired, please login again.");
-      this.logout();
-      return throwError(() => new Error('Token expired')); //  انتهت صلاحية التوكن، يجب تسجيل الدخول مجددًا
-    }
-}
- 
 
+registerPatient(patient: authPatient): Observable<any> {
+  return this.http.post<any>(`${this.apiUrl}/signup-patient`, patient);
+}
+
+
+
+   // الحصول على توكن صالح}
+getValidToken(): Observable<string> {
+  const token = this.getToken();
+  if (token && !this.isTokenExpired(token)) {
+    return of(token); // التوكن صالح
+  } else {
+    return this.refreshToken(); // محاولة تحديث التوكن
+  }
+}
+
+ 
   getToken(): string {
     if (isPlatformBrowser(this.platformId)) { // التأكد من أننا في المتصفح
       return localStorage.getItem('token') || '';
@@ -156,6 +161,31 @@ initializeAuthState() {
     }
   }
 }
+
+refreshToken(): Observable<any> {
+  return this.http.post<{ access_token: string, token_type: string, expires_in: number, user: string }>(
+    `${this.apiUrl}/refresh`,
+    {} // ما يحتاج headers لأن Interceptor بيتكفل فيه
+  ).pipe(
+    map(response => {
+      if (!response || !response.access_token) {
+        throw new Error('Invalid response from refresh endpoint');
+      }
+
+      // حفظ التوكن الجديد
+      this.setToken(response.access_token);
+      localStorage.setItem('userName', response.user);
+
+      return response.access_token;
+    }),
+    catchError(error => {
+      console.error('Refresh token failed:', error);
+      this.logout(); // تسجيل خروج المستخدم إذا فشل التحديث
+      return throwError(() => new Error('Token refresh failed'));
+    })
+  );
+}
+
 
   logout() {
     this.setLoggedIn(false);

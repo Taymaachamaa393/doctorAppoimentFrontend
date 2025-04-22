@@ -1,0 +1,143 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .about-us-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #1f2f98, #1ca7ec);
+    color: white;
+    padding: 60px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-section h1 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .story-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .values-section h2,
+  .team-section h2,
+  .services-section h2 {
+    color: #1f2f98;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    display: flex; /* Make cards flex containers */
+    flex-direction: column; /* Stack children vertically */
+    height: 100%; /* Ensure all cards have the same height */
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-title {
+    color: #1f2f98;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    color: #555;
+    flex-grow: 1; /* Allow text to expand and fill space */
+  }
+  
+  .card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid #4adede;
+  }
+  
+  .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    color: #1ca7ec;
+  }
+  
+  .bi {
+    font-size: 1.5rem;
+    color: #1ca7ec;
+  }
+  
+  .team-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .team-section .card {
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+  }
+  
+  .team-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .team-section .card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid #4adede;
+  }
+  
+  .team-section .card-title {
+    color: #1f2f98;
+    font-weight: bold;
+  }
+  
+  .tm {
+    color: #1f2f98;
+  }
+  
+  .services-section {
+    background-color: #7bd5f5;
+    border-radius: 10px;
+  }
+  
+  .team-section .card-text {
+    color: #555;
+  }
+  
+  /* Media Query for Screens <= 721px */
+  @media (max-width: 721px) {
+    .row {
+      justify-content: center; /* Center align items */
+    }
+    .col-md-4, .col-md-6 {
+      flex: 1 1 100%; /* Make each card take full width */
+      max-width: 100%; /* Ensure cards don't exceed full width */
+    }
+  }

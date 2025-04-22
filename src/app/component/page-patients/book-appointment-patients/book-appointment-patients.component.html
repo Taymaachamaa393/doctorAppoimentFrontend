@@ -1,0 +1,88 @@
+
+<!-- 
+  <div *ngIf="responseData" class="mt-4">
+    <h3>تفاصيل الحجز</h3>
+    <div class="alert alert-success">
+      {{ responseData.message }}
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>اسم المريض:</strong> {{ responseData.appointment.patient_name }}</li>
+      <li class="list-group-item"><strong>الحالة الصحية:</strong> {{ responseData.appointment.patient_health_status }}</li>
+      <li class="list-group-item"><strong>التاريخ:</strong> {{ responseData.appointment.appointment_date }}</li>
+      <li class="list-group-item"><strong>الوقت:</strong> {{ responseData.appointment.appointment_time }}</li>
+      <li class="list-group-item"><strong>متاح؟:</strong> {{ responseData.appointment.is_available ? 'نعم' : 'لا' }}</li>
+    </ul>
+  </div>
+ <div> -->
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container mt-5">
+    <div class="card shadow-lg border-0 p-4 rounded-4 bookAppointment">
+        <h2 class="text-center text-primary mb-4 fw-bold">
+            <i class="fas fa-calendar-plus me-2"></i> Book an Appointment
+        </h2>
+  
+        <form [formGroup]="appointmentForm" (ngSubmit)="bookAppointment()">
+            <div class="mb-3 w-50 mx-auto">
+                <label class="form-label fw-semibold">Patient Name</label>
+                <input type="text" class="form-control rounded-3" formControlName="patient_name" placeholder="Enter patient name">
+            </div>
+  
+            <div class="mb-3 w-50 mx-auto">
+                <label class="form-label fw-semibold">Health Condition</label>
+                <textarea class="form-control rounded-3" formControlName="patient_health_status" rows="3" placeholder="Enter health condition"></textarea>
+            </div>
+  
+            <!-- <div class="mb-3 w-50 mx-auto">
+                <label class="form-label fw-semibold">Appointment Type</label>
+                <select class="form-control rounded-3" formControlName="appointment_type">
+                    <option value="offline">In-Person</option>
+                    <option value="online">Virtual</option>
+                </select>
+            </div> -->
+  
+            <button type="submit" class="btn btn-primary w-50 btn-lg mt-3 shadow-sm d-flex align-items-center justify-content-center mx-auto" [disabled]="appointmentForm.invalid">
+                <i class="fas fa-check-circle me-2"></i> Confirm Appointment
+            </button>
+        </form>
+    </div>
+  
+    <div *ngIf="responseData" class="mt-5">
+        <h3 class="text-success text-center fw-bold">
+            <i class="fas fa-info-circle me-2"></i> Appointment Details
+        </h3>
+        <div class="alert alert-success text-center rounded-3 shadow-sm">
+            <i class="fas fa-check-circle me-2"></i> {{ responseData.message }}
+        </div>
+        <ul class="list-group shadow-sm rounded-4 w-50 mx-auto">
+            <li class="list-group-item d-flex justify-content-between">
+                <span class="fw-bold">Patient Name:</span> <span>{{ responseData.appointment.patient_name }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span class="fw-bold">Health Condition:</span> <span>{{ responseData.appointment.patient_health_status }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span class="fw-bold">Date:</span> <span>{{ responseData.appointment.appointment_date }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span class="fw-bold">Time:</span> <span>{{ responseData.appointment.appointment_time }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span class="fw-bold">Available?</span>
+                <span [ngClass]="{'text-success fw-bold': responseData.appointment.is_available, 'text-danger fw-bold': !responseData.appointment.is_available}">
+                    {{ responseData.appointment.is_available ? 'Yes' : 'No' }}
+                </span>
+            </li>
+        </ul>
+    </div>
+  </div>

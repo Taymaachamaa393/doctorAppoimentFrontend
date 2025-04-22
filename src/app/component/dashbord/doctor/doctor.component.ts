@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationsService } from '../../../services/notifications.service';
 import { DoctorService } from '../../../services/doctor.service';
-import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
+// import { DoctorResponse } from '../../../services/doctor.service'; // استيراد الواجهة
 import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms'; // تأكد من استيراد NgForm
 import { Observable } from 'rxjs';
@@ -60,7 +60,7 @@ export class DoctorComponent implements OnInit{
     console.error('User data is not available.');
   }
     this.loadMyAppointments();
-    this.loadPatients();
+    // this.loadPatients();
 
    // مراقبة حالة الطي/التوسيع
    this.layoutService.isCollapsed$.subscribe(collapsed => {
@@ -136,19 +136,19 @@ export class DoctorComponent implements OnInit{
       }
 
       // جلب بيانات المرضى
-      loadPatients(): void {
-        this.doctorService.getDoctorPatients(this.doctorId).subscribe(
-          (response: DoctorResponse) => {
-            console.log('Server Response:', response); // طباعة الاستجابة للتحقق
-            this.doctorName = response.doctor; // تخزين اسم الطبيب
-            this.patients = Array.isArray(response.patients) ? response.patients : [];
-          },
-          (error) => {
-            console.error('Error fetching patients:', error);
-            this.patients = [];
-          }
-        );
-      }
+      // loadPatients(): void {
+      //   this.doctorService.getDoctorPatients(this.doctorId).subscribe(
+      //     (response: DoctorResponse) => {
+      //       console.log('Server Response:', response); // طباعة الاستجابة للتحقق
+      //       this.doctorName = response.doctor; // تخزين اسم الطبيب
+      //       this.patients = Array.isArray(response.patients) ? response.patients : [];
+      //     },
+      //     (error) => {
+      //       console.error('Error fetching patients:', error);
+      //       this.patients = [];
+      //     }
+      //   );
+      // }
 
   deleteAppointment(appointmentId: number): void {
     this.doctorService.deleteAppointment(appointmentId).subscribe(

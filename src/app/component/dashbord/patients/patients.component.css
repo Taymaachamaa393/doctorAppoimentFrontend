@@ -1,11 +1,39 @@
+
 .main-content {
-    margin-left: var(--sidebar-width); /* Match the sidebar width */
-    padding: 60px 20px; /* Add padding to avoid overlapping with the navbar*/
-    transition: margin-left 0.3s ease; /* Smooth transition */
-    width: calc(100% - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  transition: margin-left var(--transition-speed) ease, width var(--transition-speed) ease;
+  box-sizing: border-box;
+}
+
+.main-content.collapsed {
+  margin-left: var(--collapsed-sidebar-width);
+  width: calc(100% - var(--collapsed-sidebar-width));
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: var(--collapsed-sidebar-width);
+  width: calc(100% - var(--collapsed-sidebar-width));
+}
+
+
+
+@media (max-width: 992px) {
+  .sidebar {
+    left: -var(--sidebar-width); /* إخفاء الشريط الجانبي خارج الشاشة */
   }
-  
-  .sidebar.collapsed + .main-content {
-    margin-left: var(--collapsed-sidebar-width); /* Match the collapsed sidebar width */
-    width: calc(100% - var(--collapsed-sidebar-width)); /* Adjust width when sidebar is collapsed */
-  } 
+
+  .sidebar.active {
+    left: 0; /* عند التفعيل يظهر */
+  }
+
+  .main-content {
+    margin-left: 0 !important; /* إزالة المسافة التي يتركها السيدبار */
+    width: 100% !important; /* تمديد المحتوى ليشمل الصفحة بالكامل */
+  }
+}
+
+
+
+
+

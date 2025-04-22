@@ -13,6 +13,11 @@
     text-transform: capitalize;
     transition: all 0.3s ease;
     white-space: nowrap;
+    position: relative;
+
+    transition: color 0.3s ease-in-out, 
+    background-color 0.3s ease-in-out;
+
   }
   
   .navbar-nav .nav-item {
@@ -35,4 +40,122 @@
     width: 20px; 
     height: 20px;
   }
+
   
+  /* تأثير عند تمرير الماوس */
+  .navbar-nav .nav-link:hover {
+    color: #007bff; /* لون أزرق عند التمرير */
+    background-color: rgba(0, 123, 255, 0.1); /* خلفية خفيفة */
+    border-radius: 5px;
+  }
+    
+  
+  /* إضافة تأثير البورد السفلي عند الضغط */
+  .navbar-nav .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to top, #ffffff, #4c8bf5);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* عند تمرير الماوس يتغير اللون */
+  .navbar-nav .nav-link:hover {
+    color: #bfcadd; 
+  }
+  
+  /* .dropdown-menu {
+    position: absolute !important;
+    z-index: 1050 !important;
+    transform: translateY(10px) !important; /* لضمان ظهورها أسفل الزر */
+  /* } */ 
+  .dropdown-menu {
+    position: fixed !important; /* يجعل القائمة تظهر خارج الـ navbar */
+    top: 50px !important; /* ارتفاع القائمة المنسدلة */
+    left: auto !important;
+    right: 70px !important; /* لجعل القائمة تظهر جهة اليمين */
+    z-index: 1050 !important; /* لضمان أنها تظهر فوق أي عناصر أخرى */
+  }
+  /* في الشاشات الكبيرة (أكبر من 992px) تظهر القائمة خارج الـ navbar */
+
+
+/* في الشاشات الصغيرة (أقل من 992px) تبقى القائمة داخل النافبار */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    position: static !important; /* يضمن بقاء القائمة داخل النافبار */
+    width: 100% !important; /* يجعلها تمتد لعرض النافبار */
+  }
+}
+
+ 
+  
+  .dropdown-item {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #007bff !important; /* لون أزرق عند التمرير */
+    color: white !important; /* تغيير لون النص */
+    border-radius: 5px; /* زوايا مستديرة لمظهر أجمل */
+  }
+  
+
+.navbar-brand i{
+  color: #da0303;
+
+}
+.navbar-brand {
+  color: #f8fefe;
+
+}
+
+
+
+/* تغيير لون أيقونة القائمة */
+.navbar-toggler {
+color: #bfcadd;
+background-color: #95aee0 ; /* لون أزرق عند التمرير */
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.navbar-light .navbar-toggler-icon {
+  color: #bfcadd;
+
+}
+.icon-red-bg {
+  color: white; /* لون الأيقونة أبيض */
+  border-radius: 50%; /* جعل الخلفية دائرية */
+  font-size: 1.5rem; /* حجم الأيقونة */
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+
+
+/* الزر الأحمر عند فتح القائمة */
+.btn-red {
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 30%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000; /* تأكد أن الزر فوق القائمة */
+}
+
+/* تغيير لون الزر عند التمرير */
+.btn-red:hover {
+  background-color: darkred ; /* لون داكن عند التمرير */
+}
+
+/* تغيير لون الأيقونة عند فتح القائمة */
+.btn-red i {
+  color: white ; /* لون الأيقونة أبيض */
+}
+

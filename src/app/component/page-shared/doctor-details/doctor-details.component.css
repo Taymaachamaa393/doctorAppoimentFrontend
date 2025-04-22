@@ -1,0 +1,46 @@
+.detailsDoctor{
+  margin-top: 50px;
+}
+
+.rating-card {
+    transition: transform 0.2s;
+    border-left: 4px solid #0d6efd;
+    width: 100%;
+  }
+  
+  .rating-card:hover {
+    transform: translateX(10px);
+  }
+  
+  .doctor-info p {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    text-align: center;
+  }
+  
+  
+  .spinner-border {
+    width: 4rem;
+    height: 4rem;
+  }
+  .doctor-info p + p {
+    margin: 20px;
+  }
+  .min-btn-width {
+    min-width: 200px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .min-btn-width {
+    min-width: 180px;
+    max-width: 250px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  
+  .d-flex.flex-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }

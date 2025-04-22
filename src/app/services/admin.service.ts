@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Doctor } from '../models/doctor.model';
 import { map } from 'rxjs/operators'; 
 import { AuthService } from './auth.service';
+import { DoctorCertificateResponse } from '../models/doctor.model';
+
 
 
 @Injectable({
@@ -15,31 +17,43 @@ export class AdminService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
 
-  // جلب قائمة الأطباء المعلقين
-  // getPendingDoctors(): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/pending-doctors`);
+  // getDoctors(): Observable<Doctor[]> {
+  //   return this.http.get<Doctor[]>(this.apiUrl);
   // }
 
-  // selectDoctor(doctor: Doctor): void {
-  //   this.selectedDoctor = {
-  //     ...doctor,
-  //     profileImageUrl: `http://api-doctor.clingroup.net/storage/${doctor.certificate_path}`
-  //   };
+
+  
+  // getDoctors(): Observable<Doctor[]> {
+  //   return this.http.get<{ doctors: Doctor[] }>(this.apiUrl).pipe(
+  //     map(response => 
+  //       response.doctors.map(doctor => ({
+  //         ...doctor,
+  //         certificate_url: `https://api-doctor.clingroup.net/storage/${doctor.certificate_path}`
+  //       }))
+  //     )
+  //   );
   // }
-   // جلب جميع الأطباء
-  getDoctors(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.apiUrl);
-  }
+  
+     //  طلب جلب جميع المقدمين من الأطباء  
   getPendingDoctors(): Observable<Doctor[]> {
     return this.http.get<{ doctors: Doctor[] }>(`${this.apiUrl}/pending-doctors`).pipe(
       map(response => response.doctors) // استخراج المصفوفة فقط
     );
   }
  
-  // عرض شهادة طبيب معين
-  getDoctorCertificate(doctorId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/doctor/${doctorId}/certificate`);
+  // دالة لجلب شهادة الطبيب
+  // getDoctorCertificate(doctorId: number): Observable<DoctorCertificateResponse> {
+  //   return this.http.get<DoctorCertificateResponse>(`${this.apiUrl}/${doctorId}/certificate`);
+  // }
+  getDoctorCertificate(doctorId: number): Observable<string> {
+    return this.http.get<{ doctor: { certificate_url: string } }>(
+      `${this.apiUrl}/doctor/${doctorId}/certificate`
+    ).pipe(
+      map(response => response.doctor.certificate_url) // استخراج الرابط فقط
+    );
   }
+  
+
 
   // الموافقة على طبيب
   verifyDoctor(doctorId: number): Observable<any> {
@@ -57,11 +71,6 @@ export class AdminService {
   //       map((response: { doctors: Doctor[] }) => response.doctors) //  استخراج المصفوفة تلقائيًا
   //     );
   //   }
-
- 
- 
-
-
-      }
+}
 
   

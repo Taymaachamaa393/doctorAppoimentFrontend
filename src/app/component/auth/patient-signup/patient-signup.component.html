@@ -1,6 +1,7 @@
 <h1> Register as a Patient</h1>
 
 <div class="container">
+  
   <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
     <!-- اسم المريض -->
     <div class="input-icon">
@@ -29,6 +30,7 @@
       يرجى إدخال بريد إلكتروني صحيح.
     </div>
 
+
     <!-- كلمة المرور -->
     <div class="input-icon">
       <i class="fas fa-lock"></i>
@@ -38,7 +40,19 @@
       يجب أن تكون كلمة المرور على الأقل 6 أحرف.
     </div>
 
+
+    <!-- تأكيد كلمة المرور -->
+    <div class="input-icon">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password_confirmation" formControlName="password_confirmation" placeholder="Confirm Password" required />
+    </div>
+    <div *ngIf="patientForm.hasError('mismatch') && patientForm.get('password_confirmation')?.touched">
+      كلمات المرور غير متطابقة.
+    </div>
+
+
     <!-- زر الإرسال -->
     <button type="submit" [disabled]="patientForm.invalid">Submit</button>
   </form>
+
 </div>

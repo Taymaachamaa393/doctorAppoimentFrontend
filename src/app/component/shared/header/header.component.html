@@ -1,44 +1,63 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
  
  <nav *ngIf="!isLoggedIn || isPublicPage" class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom shadow-sm">
-  <div class="container">
+  <div class=" container">
     <a class="navbar-brand" href="#">
-      <i class="bi bi-heart-pulse-fill"></i> Medical Center
+      <i class="bi bi-heart-pulse-fill"></i> Clingroup
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button  class="navbar-toggler d-lg-none" type="button"  
+             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+             aria-label="Toggle navigation"   (click)="toggleNavbar()" [ngClass]="{'btn-red': isNavbarOpen}">
+          <!-- <i class="fas fa-bars" [ngClass]="{'text-white': isNavbarOpen, 'text-dark': !isNavbarOpen}"></i> -->
+          <i class="navbar-toggler-icon" [ngClass]="isNavbarOpen ? 'fas fa-times text-white icon-red-bg' : 'fas fa-bars text-dark'"></i>
+
+        <!-- <span class="navbar-toggler-icon"></span> -->
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+ 
+    <div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}"  id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">Home</a>
+          <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="closeNavbarOnItemSelect()">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about-us">About Us</a>
+          <a class="nav-link" routerLink="/about-us" routerLinkActive="active" (click)="closeNavbarOnItemSelect()">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/services">Services</a>
+          <a class="nav-link" routerLink="/services" routerLinkActive="active" (click)="closeNavbarOnItemSelect()">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="">Doctors</a>
+          <a class="nav-link" routerLink="/view-all-doctors" routerLinkActive="active" (click)="closeNavbarOnItemSelect()">Doctors</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="">Contact Us</a>
+          <a class="nav-link" routerLink="" >Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/search-doctors">Doctor Search</a>
+          <a class="nav-link" routerLink="/" (click)="goToDashboard()">Dashboard</a>
         </li>
         <!-- قائمة منسدلة لتسجيل الدخول وإنشاء حساب -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" 
+             id="authDropdown" role="button" data-bs-toggle="dropdown" 
+             (click)="toggleDropdown()" [class.show]="isDropdownOpen"
+             [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'"
+             data-bs-display="static">      
             Account
           </a>
-          <ul class="dropdown-menu" aria-labelledby="authDropdown">
-            <li><a class="dropdown-item" routerLink="/login">Sign In</a></li>
-            <li><a class="dropdown-item" routerLink="/doctorSignup">Sign Up Doctor</a></li>
-            <li><a class="dropdown-item" routerLink="/patientSignup">Sign Up patient</a></li>
+          <ul class="dropdown-menu dropdown-menu-end" [class.show]="isDropdownOpen" aria-labelledby="authDropdown">
+            <li *ngFor="let option of options" 
+                (click)="selectOption(option.label)"
+                (mouseover)="hoveredOption = option.label"
+                (mouseleave)="hoveredOption = null"
+                (click)="closeNavbarOnItemSelect()">
+              <a class="dropdown-item" 
+                 [routerLink]="option.link" 
+                 routerLinkActive="active"
+                 [ngClass]="{
+                   'bg-secondary text-white': selectedOption === option.label, 
+                   'bg-info text-dark': hoveredOption === option.label && selectedOption !== option.label
+                 }">{{ option.label }}</a></li>
           </ul>
-        </li>
+        </li>      
 
       </ul>
     </div>
@@ -46,12 +65,12 @@
 </nav> 
  
 
-<nav  *ngIf="isLoggedIn  && !isPublicPage" class="navbar navbaRole navbar-expand-lg {{ userRole }}-navbar"  [class.collapsed]="isCollapsed" >
+<nav  *ngIf="isLoggedIn  && !isPublicPage" class="navbar navbaRole navbar-expand-lg  {{ userRole }}-navbar"  [class.collapsed]="isCollapsed" >
   <div class="container-fluid">
    
    <!-- زر التبديل (يظهر فقط في الشاشات الصغيرة) -->
    <button class="toggle-sidebar-btn" *ngIf="isSmallScreen" (click)="toggleMobileMenu()">
-    <i class="fas fa-bars"></i> Menu
+    <i class="fas fa-bars"></i> 
    </button>
 
    
@@ -107,3 +126,4 @@
   </ul>
 
 </div>
+

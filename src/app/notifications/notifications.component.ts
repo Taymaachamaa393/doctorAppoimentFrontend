@@ -15,14 +15,14 @@ export class NotificationsComponent implements OnInit {
   constructor(private notificationsService: NotificationsService) {}
 
   ngOnInit(): void {
-    this.notificationsService.getNotifications().subscribe(
-      (data) => {
-        this.notifications = data; // تعيين البيانات التي تم جلبها إلى المتغير
-      },
-      (error) => {
-        console.error('Error fetching notifications:', error);
-        this.errorMessage = 'Failed to load notifications. Please try again later.';
-      }
-    );
+    // this.notificationsService.getNotifications().subscribe(
+    //   (data) => {
+    //     this.notifications = data; // تعيين البيانات التي تم جلبها إلى المتغير
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching notifications:', error);
+    //     this.errorMessage = 'Failed to load notifications. Please try again later.';
+    //   }
+    // );
   }
 }

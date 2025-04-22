@@ -1,0 +1,154 @@
+<!-- <div class="container mt-5">
+    <div class="card p-4 shadow-lg">
+      <h2 class="fw-bold text-primary">{{ doctor?.name }}</h2>
+      <p class="text-muted">التخصص: {{ doctor?.specialization }}</p>
+      <p>
+        التوثيق:
+        <span [ngClass]="{'text-success': doctor?.is_verified, 'text-danger': !doctor?.is_verified}">
+          {{ doctor?.is_verified ? 'موثق' : 'غير موثق' }}
+        </span>
+      </p>
+  
+      <h4 class="mt-4">التقييمات:</h4>
+      <div *ngIf="doctor?.ratings?.length > 0">
+        <div *ngFor="let rating of doctor.ratings" class="mb-3 border-bottom pb-2">
+          <p><strong>⭐ التقييم:</strong> {{ rating.rating }}/5</p>
+          <p class="text-muted">{{ rating.review }}</p>
+          <small class="text-muted">بتاريخ: {{ rating.created_at | date }}</small>
+        </div>
+      </div>
+      <p *ngIf="doctor?.ratings?.length === 0" class="text-muted">لا يوجد تقييمات حتى الآن.</p>
+  
+      <div class="d-flex gap-3 mt-4">
+        <button class="btn btn-success w-100" (click)="bookAppointment()" *ngIf="isLoggedIn">
+          حجز موعد
+        </button>
+        <button class="btn btn-primary w-100" (click)="rateDoctor()">تقييم الطبيب</button>
+      </div>
+    </div>
+  </div> -->
+  
+
+
+
+
+
+
+
+
+          <!-- عرض التقييمات -->
+          <!-- <div class="mt-3">
+            <h5>تقييمات المرضى:</h5>
+            <div *ngIf="doctor.ratings && doctor.ratings.length > 0">
+              <div *ngFor="let rating of doctor.ratings" class="mb-2">
+                <p>
+                  <strong>تقييم:</strong>
+                  <span [innerHTML]="getStarRating(rating.rating)" class="text-warning"></span>
+                </p>
+                <p class="text-muted mb-1">{{ rating.review }}</p>
+                <small class="text-muted">بتاريخ: {{ rating.created_at | date }}</small>
+              </div>
+            </div>
+            <div *ngIf="!doctor.ratings || doctor.ratings.length === 0">
+              <p class="text-muted">لا يوجد تقييمات.</p>
+            </div>
+          </div>
+   -->
+          
+          <!-- نافذة التقييم -->
+          <!-- <div *ngIf="selectedDoctorId" class="modal">
+            <h3>إضافة تقييم</h3>
+            <label>⭐ التقييم:</label>
+            <select [(ngModel)]="newRating.rating">
+              <option *ngFor="let star of [1,2,3,4,5]" [value]="star">{{ star }}</option>
+            </select>
+          
+            <label>💬 المراجعة:</label>
+            <textarea [(ngModel)]="newRating.review"></textarea>
+          
+            <button (click)="submitRating()">إرسال</button>
+            <button (click)="selectedDoctorId = null">إغلاق</button>
+          </div> -->
+
+
+
+
+
+
+
+  <div class="container mt-5 d-flex flex-column align-items-center text-center">
+    <div class="card p-5 detailsDoctor shadow-lg w-75" *ngIf="doctorsPublic; else loading">
+        <h2 class="fw-bold text-primary mb-4 display-4">{{ doctorsPublic.name }}</h2>
+        <div class="doctor-info mb-4 d-flex flex-column align-items-center w-100">
+          <p class="text-dark fs-5 mb-3">
+              <i class="fas fa-stethoscope me-2"></i>
+              التخصص: <span class="text-secondary">{{ doctorsPublic.specialization }}</span>
+          </p>
+          <p class="text-dark fs-5 mt-3">
+              <i class="fas fa-certificate me-2"></i>
+              التوثيق:
+              <span [ngClass]="{'badge bg-success': doctorsPublic.is_verified, 'badge bg-danger': !doctorsPublic.is_verified}" class="ms-2">
+                  {{ doctorsPublic.is_verified ? 'موثق' : 'غير موثق' }}
+              </span>
+          </p>
+      </div>
+        <h4 class="mt-5 mb-4 border-bottom pb-3 text-primary">
+            <i class="fas fa-star-half-alt me-2"></i>
+            التقييمات
+        </h4>
+
+
+<!-- <div *ngIf="doctorsPublic?.ratings && doctorsPublic.ratings.length > 0; else noRatings"> -->
+        <!-- <div *ngIf="doctorsPublic?.ratings?.length > 0; else noRatings"> -->
+
+
+
+        <div *ngFor="let rating of doctorsPublic.ratings" class="mb-4 p-3 rating-card bg-light rounded-3 shadow-sm text-start w-100">
+            <div class="d-flex align-items-center mb-2">
+                <div class="rating-stars">
+                    <span class="text-warning fs-5">⭐️</span>
+                    <span class="fw-bold fs-5">{{ rating.rating }}/5</span>
+                </div>
+                <small class="text-muted ms-auto">
+                    <i class="fas fa-clock me-1"></i>
+                    {{ rating.created_at | date:'mediumDate' }}
+                </small>
+            </div>
+
+<p class="text-dark mb-0 fs-5">{{ rating?.review ?? 'لا يوجد تعليق' }}</p>
+        </div>
+
+        <ng-template #noRatings>
+            <div class="alert alert-info mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                لا يوجد تقييمات حتى الآن.
+            </div>
+        </ng-template>
+        <div class="d-flex gap-3 mt-5 w-100 justify-content-center flex-wrap">
+          <button class="btn btn-success btn-md flex-grow-1 px-3 py-2 shadow-sm min-btn-width" (click)="bookAppointment()">
+              <i class="fas fa-calendar-check me-2"></i>
+              حجز موعد
+          </button>
+          <button class="btn btn-primary btn-md flex-grow-1 px-3 py-2 shadow-sm min-btn-width" (click)="rateDoctor()">
+              <i class="fas fa-star me-2"></i>
+              تقييم الطبيب
+          </button>
+      </div>
+
+    </div>
+
+    <ng-template #loading>
+        <div class="text-center mt-5 py-5">
+            <div class="spinner-border text-primary spinner-border-lg" role="status">
+                <span class="visually-hidden">جار التحميل...</span>
+            </div>
+            <p class="text-muted mt-3 fs-5">جارٍ تحميل البيانات...</p>
+        </div>
+    </ng-template>
+</div>
+
+
+
+
+
+         

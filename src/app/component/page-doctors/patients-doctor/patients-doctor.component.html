@@ -1,8 +1,8 @@
-<div class="dashboard-container">
-    
-    <div class="dashboard mt-5">
-        <h2>Doctor's Dashboard</h2>
-          
+  <div class="dashboard-container">
+      
+      <div class="dashboard mt-5">
+          <h2>Doctor's Dashboard</h2>
+            
        
 <!--     
         <div class="appointments">
@@ -72,8 +72,16 @@
       <div class="row">
         <div class="col-md-4" *ngFor="let patient of patients">
           <div class="card mb-4">
+            <h2>👨‍⚕️  {{ doctorName }}</h2>
+
             <div class="card-body">
-              <h5 class="card-title">{{ patient.name || 'N/A' }}</h5>
+
+              <h5 class="card-title">{{ patient.patient_id || 'N/A' }}</h5>
+
+              <h5 class="card-title">{{ patient.patient_name || 'N/A' }}</h5>
+              <h5 class="card-title">{{ patient.appointment_date || 'N/A' }}</h5>
+
+              <h5 class="card-title">{{ patient.appointment_time || 'N/A' }}</h5>
               <!-- <p class="card-text"><strong>Email:</strong> {{ patient.email || 'N/A' }}</p> -->
               <!-- <p class="card-text"><strong>Phone:</strong> {{ patient.phone || 'N/A' }}</p> -->
               <!-- <p class="card-text"><strong>Age:</strong> {{ patient.age || 'N/A' }}</p> -->

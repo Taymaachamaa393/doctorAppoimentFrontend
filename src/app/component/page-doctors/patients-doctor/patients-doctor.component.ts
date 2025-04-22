@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationsService } from '../../../services/notifications.service';
 import { DoctorService } from '../../../services/doctor.service';
-import { DoctorResponse } from '../../../services/doctor.service';// استيراد الواجهة
+// import { DoctorResponse } from '../../../services/doctor.service';
 import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms'; // تأكد من استيراد NgForm
 import { Observable } from 'rxjs';
@@ -29,7 +29,9 @@ export class PatientsDoctorComponent implements OnInit{
     };
     errorMessage: string = ''; // لتخزين رسالة الخطأ
     successMessage: string = ''; // لتخزين رسالة النجاح
-  
+ 
+            
+
     constructor(
       private notificationsService: NotificationsService,
       private doctorService: DoctorService,
@@ -50,7 +52,10 @@ export class PatientsDoctorComponent implements OnInit{
     }
       this.loadMyAppointments();
       this.loadPatients();
+      this.loadPatients();
     }
+  
+   
       // تحميل جميع المواعيد المحجوزة وغير المحجوزة  الدكتور 
       loadMyAppointments(): void {
         this.doctorService.getMyAppointments().subscribe(
@@ -116,21 +121,28 @@ export class PatientsDoctorComponent implements OnInit{
         private pad(num: number): string {
           return num < 10 ? `0${num}` : num.toString();
         }
-  
-        // جلب بيانات المرضى
+
         loadPatients(): void {
-          this.doctorService.getDoctorPatients(this.doctorId).subscribe(
-            (response: DoctorResponse) => {
-              console.log('Server Response:', response); // طباعة الاستجابة للتحقق
-              this.doctorName = response.doctor; // تخزين اسم الطبيب
-              this.patients = Array.isArray(response.patients) ? response.patients : [];
-            },
-            (error) => {
-              console.error('Error fetching patients:', error);
-              this.patients = [];
-            }
-          );
+          this.doctorService.getPatients().subscribe(response => {
+            this.doctorName = response.doctor;
+            this.patients = response.patients;
+          });
         }
+  
+        // // جلب بيانات المرضى
+        // loadPatients(): void {
+        //   this.doctorService.getDoctorPatients(this.doctorId).subscribe(
+        //     (response: DoctorResponse) => {
+        //       console.log('Server Response:', response); // طباعة الاستجابة للتحقق
+        //       this.doctorName = response.doctor; // تخزين اسم الطبيب
+        //       this.patients = Array.isArray(response.patients) ? response.patients : [];
+        //     },
+        //     (error) => {
+        //       console.error('Error fetching patients:', error);
+        //       this.patients = [];
+        //     }
+        //   );
+        // }
   
     deleteAppointment(appointmentId: number): void {
       this.doctorService.deleteAppointment(appointmentId).subscribe(
@@ -147,6 +159,8 @@ export class PatientsDoctorComponent implements OnInit{
         }
       );
     }
+    
+    
   }
       
       
@@ -167,4 +181,5 @@ export class PatientsDoctorComponent implements OnInit{
     // }
   
   
+
   

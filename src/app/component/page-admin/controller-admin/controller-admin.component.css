@@ -1,0 +1,43 @@
+.section-title {
+    color: #1f2f98;
+    font-weight: bold;
+  }
+  
+  .li-title {
+    cursor: pointer;
+    border: 1px solid #1ca7ec;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .spa
+  {
+    color: #1f2f98; font-weight: bold;
+  }
+  .badge{
+    font-size: 0.9rem; padding: 8px 12px; border-radius: 20px;
+  }
+  .sty
+  {
+    border: 1px solid #1ca7ec; border-radius: 15px; background-color: #f8fafc;
+  }
+  .imm{
+    width: 150px; height: 150px; border: 3px solid #1ca7ec;
+  }
+  .immm{
+    width: 100%; border: 2px solid #1ca7ec; border-radius: 10px;
+  }
+  .detels
+  {
+    color: #1f2f98; font-size: 1.1rem;
+  }
+  .btn-s{
+    background-color: #4adede; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold;
+  }
+  .btn-d{
+    background-color: #ff6b6b; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold;
+  }
+  .btn-se{
+    background-color: #1f2f98; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold;
+  }
+  
